@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LocalDatabase-jvm">
+    <output-path>$PROJECT_DIR$/LocalDatabase/build/libs</output-path>
+    <root id="archive" name="LocalDatabase-jvm.jar" />
+  </artifact>
+</component>
