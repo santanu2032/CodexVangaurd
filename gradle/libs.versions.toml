@@ -1,5 +1,5 @@
 [versions]
-agp = "9.2.1"
+agp = "9.0.1"
 coreKtx = "1.18.0"
 firebaseCommon = "2.6.0"
 junit = "4.13.2"
@@ -11,6 +11,7 @@ kotlin = "2.2.10"
 composeBom = "2026.02.01"
 jetbrainsKotlinJvm = "2.2.10"
 compose-multiplatform = "1.7.3"
+sqliteJdbc = "3.53.4.0"
 uiDesktop = "1.7.0"
 kotlinStdlib = "2.2.10"
 kotlinTest = "2.2.10"
@@ -63,6 +64,7 @@ firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-k
 
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
+sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqliteJdbc" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

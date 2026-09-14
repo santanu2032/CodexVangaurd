@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Data">
+    <output-path>$PROJECT_DIR$/Data/build/libs</output-path>
+    <root id="archive" name="Data.jar">
+      <element id="module-output" name="TestUI.Data.androidMain" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LocalDatabase">
+    <output-path>$PROJECT_DIR$/LocalDatabase/build/libs</output-path>
+    <root id="archive" name="LocalDatabase.jar">
+      <element id="module-output" name="TestUI.LocalDatabase.androidMain" />
+    </root>
+  </artifact>
+</component>

@@ -1,24 +1,21 @@
 package com.localdatabase
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
-
 import org.junit.Test
-import org.junit.runner.RunWith
-
 import org.junit.Assert.*
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class DatabaseTest {
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.localdatabase.test", appContext.packageName)
+    fun testDatabaseExecution() {
+        // You can call your database functions here to test them
+        // For example, if you have a execute() function in your Execute_android.kt:
+
+        try {
+            execute()
+            // assertTrue(someCondition)
+            println("Test running successfully on the local JVM!")
+        } catch (e: Exception) {
+            fail("Database test crashed: ${e.message}")
+        }
     }
 }

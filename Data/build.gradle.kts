@@ -12,9 +12,9 @@ kotlin {
     android {
         namespace = "com.data"
         compileSdk {
-            version = release(37)
+            version = release(35)
         }
-        minSdk = 31
+        minSdk = 24
 
         withHostTestBuilder {
         }

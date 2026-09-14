@@ -12,9 +12,9 @@ kotlin {
     android {
         namespace = "com.localdatabase"
         compileSdk {
-            version = release(37)
+            version = release(35)
         }
-        minSdk = 31
+        minSdk = 24
 
         withHostTestBuilder {
         }
@@ -62,6 +62,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                implementation(libs.sqlite.jdbc)
                 // Add KMP dependencies here
             }
         }
