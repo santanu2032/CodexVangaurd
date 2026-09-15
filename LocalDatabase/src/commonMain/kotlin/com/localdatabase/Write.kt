@@ -1,7 +1,11 @@
 package com.localdatabase
 
-fun write(): String{
-    val sql: String="INSERT INTO localdatabase(id,time_stamp,column_1) VALUES(2,111914092026,\"SANTANU SARKAR\");"
+import com.localdatabase.CRUD_Contract.write
 
-    return sql;
+
+class DatabaseWriter : write {
+
+    override fun _write(id: Int, time_stamp: Long, column_1: String): String {
+        return "INSERT INTO localdatabase(id,time_stamp,column_1) VALUES($id, $time_stamp, '$column_1');"
+    }
 }
