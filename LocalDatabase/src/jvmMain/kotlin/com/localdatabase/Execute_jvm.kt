@@ -2,12 +2,12 @@ package com.localdatabase
 
 import java.sql.DriverManager
 
-fun execute_jvm() {
+fun execute_jvm() {//only for test
     val dbUrl = "jdbc:sqlite:LocalDatabase/localdatabase.db"
 
     try {
         DriverManager.getConnection(dbUrl).use { connection ->
-            val sqlCommand = write()
+            val sqlCommand =""//TODO
 
             connection.createStatement().use { statement ->
                 val rowsAffected = statement.executeUpdate(sqlCommand)
