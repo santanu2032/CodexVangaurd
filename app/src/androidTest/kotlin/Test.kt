@@ -174,34 +174,65 @@ fun StudyActionCard(model: ActionCardModel) {
 }
 @Preview
 @Composable
-fun PrototypeBox_I() {
-    var isClicked by remember { mutableStateOf(false) }
-
-    // We can use the click state to dim the card slightly, or just keep it for logic
-    val cardAlpha = if (isClicked) 0.8f else 1.0f
-
+fun NavigationBar(){
     Box(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(fraction = 0.4f)
-                .fillMaxHeight(fraction = 0.2f) // Adjust this fraction if the card clips
-                .align(alignment = BiasAlignment(horizontalBias = -0.8f, verticalBias = -0.35f))
-                .clickable {
 
-                }
+
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .zIndex(1f)
+                .padding(horizontal = 24.dp, vertical = 24.dp)
+                .fillMaxWidth()
+                .height(76.dp)
+                .background(color = Color(0xFF191C24), shape = RoundedCornerShape(24.dp))
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // The Figma UI Component
-            StudyActionCard(
-                model = ActionCardModel(
-                    title = "Continue learning",
-                    description = "Return to Cellular Respiration and pick up at the electron transport chain.",
-                    themeColor = Color(0xFF635688), // Purple theme
-                    topLabel = "Biology 201",
-                    actionText = "Resume lesson",
-                    bottomLeftText = "18 min left",
-                    progress = 0.68f
-                )
-            )
+
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(Color(0xFF635688).copy(alpha = 0.3f), RoundedCornerShape(16.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("⊞", color = Color.White, fontSize = 16.sp)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text("Dashboard", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                }
+            }
+
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("📅", color = Color(0xFF8B92A5), fontSize = 16.sp)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text("Study plan", color = Color(0xFF8B92A5), fontSize = 12.sp)
+                }
+            }
+
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("📚", color = Color(0xFF8B92A5), fontSize = 16.sp)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text("Library", color = Color(0xFF8B92A5), fontSize = 12.sp)
+                }
+            }
         }
     }
 }
