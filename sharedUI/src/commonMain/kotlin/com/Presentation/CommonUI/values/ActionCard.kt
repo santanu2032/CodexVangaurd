@@ -1,85 +1,31 @@
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import org.junit.runner.RunWith
+package com.Presentation.CommonUI.values
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.autofill.contentType
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
-import com.Presentation.CommonUI.Event.EventStatus
-import com.Presentation.CommonUI.Event.Event_II.Event_2
-import com.Presentation.CommonUI.Event.Event_II.TextField_event_2
-import com.Presentation.CommonUI.values.CustomColorKT
-import com.Presentation.CommonUI.values.SantanuCC
-import org.junit.Rule
-import java.nio.file.WatchEvent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-
-
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
-
-    // 1. Initialize the Compose test rule
-    @get:Rule
-    val composeTestRule = createComposeRule()
-
-    @Test
-    fun testAssistantInterface() {
-        // 2. Wrap your Composable inside setContent
-        composeTestRule.setContent {
-
-        }
-
-    }
-}
-
-
-
-
-
 
 
 data class ActionCardModel(
@@ -169,39 +115,6 @@ fun StudyActionCard(model: ActionCardModel) {
                     Text(text = "${model.actionText} ↗", color = model.themeColor, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                 }
             }
-        }
-    }
-}
-@Preview
-@Composable
-fun PrototypeBox_I() {
-    var isClicked by remember { mutableStateOf(false) }
-
-    // We can use the click state to dim the card slightly, or just keep it for logic
-    val cardAlpha = if (isClicked) 0.8f else 1.0f
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(fraction = 0.4f)
-                .fillMaxHeight(fraction = 0.2f) // Adjust this fraction if the card clips
-                .align(alignment = BiasAlignment(horizontalBias = -0.8f, verticalBias = -0.35f))
-                .clickable {
-
-                }
-        ) {
-            // The Figma UI Component
-            StudyActionCard(
-                model = ActionCardModel(
-                    title = "Continue learning",
-                    description = "Return to Cellular Respiration and pick up at the electron transport chain.",
-                    themeColor = Color(0xFF635688), // Purple theme
-                    topLabel = "Biology 201",
-                    actionText = "Resume lesson",
-                    bottomLeftText = "18 min left",
-                    progress = 0.68f
-                )
-            )
         }
     }
 }

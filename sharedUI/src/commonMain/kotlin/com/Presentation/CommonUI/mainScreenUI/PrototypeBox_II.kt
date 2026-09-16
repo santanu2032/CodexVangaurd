@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
+import com.Presentation.CommonUI.values.ActionCardModel
+import com.Presentation.CommonUI.values.StudyActionCard
 
 
 @Composable
@@ -29,7 +31,7 @@ fun PrototypeBox_II(manager: LocalManager){
 
             .fillMaxWidth(0.4f)
             .fillMaxHeight(0.2f)
-            .background(color = boxColor, shape = RoundedCornerShape(16.dp))
+            .background(color = boxColor, shape = RoundedCornerShape(30.dp))
             .align(BiasAlignment(horizontalBias = 0.8f, verticalBias = -0.35f))
             .clickable {
                 isClicked = !isClicked
@@ -42,7 +44,17 @@ fun PrototypeBox_II(manager: LocalManager){
                 }
             }
         ) {
-
+            StudyActionCard(
+                model = ActionCardModel(
+                    title = "Continue learning",
+                    description = "Return to Cellular Respiration and pick up at the electron transport chain.",
+                    themeColor = Color(0xFF28565A),
+                    topLabel = "Biology 201",
+                    actionText = "Resume lesson",
+                    bottomLeftText = "18 min left",
+                    progress = 0.68f
+                )
+            )
         }
     }
 }
