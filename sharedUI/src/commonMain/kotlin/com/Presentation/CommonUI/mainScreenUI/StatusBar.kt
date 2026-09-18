@@ -6,6 +6,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
@@ -14,11 +16,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
-import com.Presentation.CommonUI.values.CustomColorKT
 
 @Composable
-fun StatusBar() {//TODO("pass obj for currentState")
-
+fun StatusBar(state: StatusBarStateHolder) {//TODO("pass obj for currentState")
+val currentState by state.modeState.collectAsState()
+    val hour=currentState.currentTimeGreeting
     Box(modifier = Modifier.fillMaxSize()) {
 
 
@@ -56,7 +58,7 @@ fun StatusBar() {//TODO("pass obj for currentState")
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "Good evening, Maya",
+                    text = "$hour, Maya",
                     color = Color.White,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold

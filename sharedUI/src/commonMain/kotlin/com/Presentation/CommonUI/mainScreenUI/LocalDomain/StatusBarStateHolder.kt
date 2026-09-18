@@ -19,4 +19,8 @@ class StatusBarStateHolder{
         CurrentState.value=CurrentState.value.copy(modeCurrentState = data)
     }
 
+    fun changeGreeting(data: String){
+        CurrentState.value=CurrentState.value.copy(currentTimeGreeting = data)
+    }
+
 }

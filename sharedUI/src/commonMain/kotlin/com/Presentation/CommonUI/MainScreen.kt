@@ -13,10 +13,11 @@ import com.Presentation.CommonUI.Event.Event_II.Event_2
 import com.Presentation.CommonUI.mainScreenUI.DrawMainScreenBackground
 import com.Presentation.CommonUI.mainScreenUI.localManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 
 
 @Composable
-fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent: NetworkUILinkRepository,networkManager: NetworkManager){
+fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent: NetworkUILinkRepository,networkManager: NetworkManager,state: StatusBarStateHolder){
 
     val currentState_prototypeBox_II by localManager.uiState_2.collectAsState()
     val currentState_prototypeBox_I by localManager.uiState_1.collectAsState()
@@ -33,7 +34,7 @@ fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent:
             Event_1(networkEvent,networkManager)
         }
         else{
-            DrawMainScreenBackground(eventLink,localManager)
+            DrawMainScreenBackground(eventLink,localManager,state)
         }
     }
 }
