@@ -13,10 +13,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.values.CustomColorKT
 
 @Composable
-fun StatusBar() {
+fun StatusBar() {//TODO("pass obj for currentState")
+
     Box(modifier = Modifier.fillMaxSize()) {
 
 
@@ -35,7 +37,7 @@ fun StatusBar() {
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "ORBIT STUDY",
+                        text = "LET'S STUDY",
                         color = Color(0xFF635688),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
