@@ -49,10 +49,14 @@ fun main() = application {//composition root
             val network =remember { Local_Manager_NetworkUIRepository() }
             val request= remember { RequestRepository() }
             val networkManager=remember { NetworkManager(request) }
-            val statusBar_= remember{ StatusBarStateHolder() }
             val statusBarLogic_= remember{ StatusBarLogic() }
             val hour=statusBarLogic_.timeState()
+            val statusBar_ = remember {
+                StatusBarStateHolder().apply {
 
+                    changeGreeting(statusBarLogic_.timeState())
+                }
+            }
             LaunchedEffect(Unit) {
                 statusBar_.changeGreeting(hour)
                 delay(5000)
