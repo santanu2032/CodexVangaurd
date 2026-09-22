@@ -1,5 +1,6 @@
 package com.domain
 
+data class stateholdder(val fp: Double =0.4)
 
 fun monthlyBudgetCalculation(data: Int): String{
 
