@@ -1,10 +1,10 @@
 package com.localdatabase
 
 import java.sql.DriverManager
-import com.localdatabase.write
+
 fun execute(){
     val connection = DriverManager.getConnection("jdbc:sqlite:localdata.db")
-    val sql:String=write()
+    val sql:String="write()"//TODO fix it
 
     try {
         val statement = connection.prepareStatement(sql)

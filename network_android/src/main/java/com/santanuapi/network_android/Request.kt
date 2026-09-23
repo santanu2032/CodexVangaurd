@@ -8,7 +8,7 @@ fun request(context: Context) {
     print("Initiating server link\n.\n.\n.\n.\n.\n.")
 
     try{
-        FirebaseApp.initializeApp(context,Server_KEY.key)
+        FirebaseApp.initializeApp(context)
     }
     catch(e: Exception) {
         e.printStackTrace()

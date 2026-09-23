@@ -3,7 +3,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -49,10 +48,14 @@ import org.junit.Rule
 import java.nio.file.WatchEvent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -172,7 +175,7 @@ fun StudyActionCard(model: ActionCardModel) {
         }
     }
 }
-@Preview
+
 @Composable
 fun NavigationBar(){
     Box(modifier = Modifier.fillMaxSize()) {
@@ -232,6 +235,151 @@ fun NavigationBar(){
                     Spacer(modifier = Modifier.width(6.dp))
                     Text("Library", color = Color(0xFF8B92A5), fontSize = 12.sp)
                 }
+            }
+        }
+    }
+}
+
+
+
+@Composable
+fun InputContainer(){
+
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.Transparent)
+        .zIndex(1f)
+    ){
+
+        Row(modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+            .fillMaxHeight(0.08f)
+            .align(Alignment.BottomCenter)
+            .background(Color.Red, shape = RoundedCornerShape(24.dp)),
+            horizontalArrangement = Arrangement.spacedBy(2.dp, alignment = Alignment.End),//TODO    (change tHE COLOR UX OPERATION)
+            verticalAlignment = Alignment.CenterVertically){
+
+
+            Box(modifier = Modifier
+                .padding(end = 5.dp, start = 3.dp, top = 3.dp, bottom = 3.dp)
+                .width(285.dp)
+                .fillMaxHeight()
+                .clip(CircleShape)
+                .background(Color.Green)//TODO    (change THE COLOR UX OPERATION)
+            ){
+
+                TextField_event_2()
+            }
+
+            Box(
+                modifier = Modifier
+                    .padding(end = 10.dp)
+                    .width(30.dp)
+                    .height(40.dp)
+                    .clip(CircleShape)
+
+                    .background(color = Color.White)
+                    .clickable{
+                        TODO("link the manager")
+                    },
+                contentAlignment = Alignment.Center) {
+                Text(text = "A") }
+            Box(
+                modifier = Modifier
+                    .padding(end = 10.dp)
+                    .width(30.dp)
+                    .height(40.dp)
+                    .clip(CircleShape)
+
+                    .background(color = Color.White)
+                    .clickable{
+                        TODO("link the manager")
+                    },
+                contentAlignment = Alignment.Center
+            )
+            {
+                Text(text = "A")
+            }
+
+
+
+
+        }
+
+    }
+
+}
+
+@Preview
+@Composable
+fun InputContainer(
+    modifier: Modifier = Modifier,
+    onMicClick: () -> Unit = {},
+    onSendClick: (String) -> Unit = {}
+) {
+    var text by remember { mutableStateOf("") }
+
+    // Outer container with transparent background
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(Color.Transparent)
+            .padding(16.dp)
+    ) {
+        // Dark, rounded input bar with shadow
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .shadow(elevation = 4.dp, shape = CircleShape)
+                .background(color = Color(0xFF2C2C2C), shape = CircleShape)
+                .padding(horizontal = 8.dp, vertical = 6.dp)
+        ) {
+
+            // Unstyled text field area
+            BasicTextField(
+                value = text,
+                onValueChange = { text = it },
+                textStyle = TextStyle(color = Color.White, fontSize = 16.sp),
+                cursorBrush = SolidColor(Color.White),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 16.dp),
+                decorationBox = { innerTextField ->
+                    Box(contentAlignment = Alignment.CenterStart) {
+                        if (text.isEmpty()) {
+                            // Optional placeholder logic can go here
+                        }
+                        innerTextField()
+                    }
+                }
+            )
+
+            // Circular Purple Action Buttons
+            val purpleColor = Color(0xFF6750A4)
+
+            IconButton(
+                onClick = onMicClick,
+                colors = IconButtonDefaults.iconButtonColors(containerColor = purpleColor),
+                modifier = Modifier.size(40.dp)
+            ) {
+                // TODO: Add Mic Icon
+            }
+
+            Spacer(modifier = Modifier.width(6.dp))
+
+            IconButton(
+                onClick = {
+                    if (text.isNotBlank()) {
+                        onSendClick(text)
+                        text = ""
+                    }
+                },
+                colors = IconButtonDefaults.iconButtonColors(containerColor = purpleColor),
+                modifier = Modifier.size(40.dp)
+            ) {
+                // TODO: Add Send Icon
             }
         }
     }
