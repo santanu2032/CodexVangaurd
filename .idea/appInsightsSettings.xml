@@ -9,10 +9,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.santanuapi.network_android" />
+                  <option name="mobileSdkAppId" value="1:583637206060:android:19e29fa1e18ebcb15b7d89" />
+                  <option name="projectId" value="server-bond" />
+                  <option name="projectNumber" value="583637206060" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
