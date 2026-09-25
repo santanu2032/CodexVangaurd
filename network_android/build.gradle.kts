@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.santanuapi.network_android"
+    namespace = "com.codexvangaurd.network_android"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -53,7 +53,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     implementation(platform("com.google.firebase:firebase-bom:34.17.0"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation(libs.firebase.analytics)
+    implementation(libs.kotlinx.coroutines.core.v1110)
+    implementation(libs.firebase.firestone)
 
 }

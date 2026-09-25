@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.santanuapi.testUI"
+    namespace = "com.codexvangaurd.testUI"
     compileSdk {
         version = release(37) {
             minorApiLevel = 1

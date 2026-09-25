@@ -1,4 +1,4 @@
-package com.santanuapi.network_android
+package com.domain.network_android
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

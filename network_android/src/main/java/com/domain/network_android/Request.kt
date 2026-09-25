@@ -1,4 +1,4 @@
-package com.santanuapi.network_android
+package com.domain.network_android
 
 import android.content.Context
 import com.google.firebase.FirebaseApp

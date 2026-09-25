@@ -1,4 +1,4 @@
-package com.santanuapi.lib
+package com.domain.lib
 
 class Test {
 }

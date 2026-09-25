@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Domain">
+    <output-path>$PROJECT_DIR$/Domain/build/libs</output-path>
+    <root id="archive" name="Domain.jar">
+      <element id="module-output" name="TestUI.Domain.androidMain" />
+    </root>
+  </artifact>
+</component>

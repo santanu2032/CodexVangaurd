@@ -35,6 +35,7 @@ include(":sensoryUnit")
 
 include(":sensoryUnit")
 include(":network_android")
-include(":Domain")
+
 include(":Data")
 include(":LocalDatabase")
+include(":Domain")

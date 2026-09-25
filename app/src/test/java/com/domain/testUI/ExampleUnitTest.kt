@@ -1,8 +1,4 @@
-package com.santanuapi.testUI
-
-import org.junit.Test
-
-import org.junit.Assert.*
+package com.domain.testUI
 
 /**
  * Example local unit test, which will execute on the development machine (host).

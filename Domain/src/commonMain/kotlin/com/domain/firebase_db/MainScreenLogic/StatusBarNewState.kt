@@ -1,4 +1,4 @@
-package com.domain.MainScreenLogic
+package com.domain.firebase_db.MainScreenLogic
 
 interface StatusBarNewState {
     fun newModeState()
