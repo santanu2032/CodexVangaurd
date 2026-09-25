@@ -11,12 +11,14 @@ class NetworkManager(private val request: RequestRepository): ViewModel() {
     private val _sendRequest= MutableStateFlow("Requesting Network Activity")
     val sendRequest=_sendRequest.asStateFlow()
 
-    fun requestNetworkActivity(){
+     fun requestNetworkActivity(str: String){
         _sendRequest.value="Requesting server access!"
+        print("Requesting server access!\n")
         viewModelScope.launch {
-            val _procesedRequest = request.processRequest()
+            val _procesedRequest = request.processRequest(str)
             _sendRequest.value=_procesedRequest
         }
     }
+
 
 }

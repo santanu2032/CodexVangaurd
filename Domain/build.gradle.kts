@@ -14,9 +14,9 @@ kotlin {
     android {
         namespace = "com.domain.domain"
         compileSdk {
-            version = release(37)
+            version = release(35)
         }
-        minSdk = 31
+        minSdk = 25
 
         withHostTestBuilder {
         }
@@ -37,23 +37,7 @@ kotlin {
     // https://developer.android.com/kotlin/multiplatform/migrate
     val xcfName = "DomainKit"
 
-    iosX64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
 
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
 
     // Source set declarations.
     // Declaring a target automatically creates a source set with the same name. By default, the
@@ -64,6 +48,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                implementation(libs.lifecycle.viewmodel)
+
                 // Add KMP dependencies here
             }
         }

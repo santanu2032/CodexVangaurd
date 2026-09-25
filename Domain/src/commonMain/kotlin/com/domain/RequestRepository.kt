@@ -1,7 +1,7 @@
-package com.domain.firebase_db
+package com.domain
 
 class RequestRepository: RequestReprositoryRouter {
-  override  suspend fun processRequest(): String{
+  override  suspend fun processRequest(str: String): String{
 
         return "\n Access Granted"
     }

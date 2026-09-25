@@ -1,4 +1,4 @@
-package com.domain.firebase_db
+package com.domain
 
 
 fun monthlyBudgetCalculation(data: Int): String{
