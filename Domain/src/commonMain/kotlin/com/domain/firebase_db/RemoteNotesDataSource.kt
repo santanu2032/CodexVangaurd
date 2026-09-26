@@ -2,8 +2,8 @@ package com.domain.firebase_db
 
 import kotlinx.coroutines.flow.Flow
 data class Note(
-    val id: String = "",
-    val title: String,
+    val user_id: String = "",
+    val id: String,
     val subject: String,
     val downloadUrl: String,
     val uploadedAt: Long = 0L
@@ -11,7 +11,7 @@ data class Note(
 
 interface RemoteNotesDataSource {
     suspend fun uploadPdfAndSaveToCloud(
-        title: String,
+        id: String,
         subject: String,
         fileName: String,
         pdfBytes: ByteArray

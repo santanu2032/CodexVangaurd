@@ -27,7 +27,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(libs.lifecycle.viewmodel)
-            implementation(compose.components.resources)
+            api(compose.components.resources)
 
             implementation(project(":shared"))
             implementation(project(":Domain"))
@@ -56,4 +56,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+}
+compose.resources {
+    publicResClass = true
+    generateResClass = always
 }

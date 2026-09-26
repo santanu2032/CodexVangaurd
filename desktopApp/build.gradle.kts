@@ -50,6 +50,8 @@ compose.desktop {
     }
 }
 dependencies {
+
+
     implementation(libs.androidx.lifecycle.viewmodel.desktop)
     implementation(kotlin("stdlib"))
     implementation(project(":sensoryUnit"))

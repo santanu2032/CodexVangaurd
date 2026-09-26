@@ -21,7 +21,8 @@ import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
 import com.domain.MainScreenLogic.StatusBarLogic
-import com.domain.RequestRepository
+import com.domain.processRequest_
+import com.domain.network_android.FirestoreNotesDataSource
 import kotlinx.coroutines.delay
 
 
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             Surface(
@@ -39,7 +41,8 @@ class MainActivity : ComponentActivity() {
                 var showMainScreen by remember { mutableStateOf(false) }
                 val Link = remember { Worker() }
                 val network =remember { Local_Manager_NetworkUIRepository() }
-                val request= remember { RequestRepository() }
+                val dataSource= remember { FirestoreNotesDataSource() }
+                val request= remember { processRequest_(dataSource) }
                 val networkManager=remember { NetworkManager(request) }
                 val statusBarLogic_= remember{ StatusBarLogic() }
                 val statusBar_ = remember {

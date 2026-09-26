@@ -13,18 +13,18 @@ import com.domain.firebase_db.Note
 class FirestoreNotesDataSource : RemoteNotesDataSource {
 
     // 1. Connect to Firestore and open the "notes" collection
-    private val notesCollection = FirebaseFirestore.getInstance().collection("notes")
+    private val notesCollection = FirebaseFirestore.getInstance().collection("server_data")
 
-    // 2. SEND / UPDATE data in Firestore TODO("send and update")
+    //  TODO("send and update")
     override suspend fun uploadPdfAndSaveToCloud(
-        title: String,
+        id: String,
         subject: String,
         fileName: String,
         pdfBytes: ByteArray
     ): Result<Unit> = withContext(Dispatchers.IO) {
         try {
             val data = hashMapOf(
-                "title" to title,
+                "id" to id,
                 "subject" to subject,
                 "fileName" to fileName,
                 "uploadedAt" to System.currentTimeMillis()
@@ -39,14 +39,14 @@ class FirestoreNotesDataSource : RemoteNotesDataSource {
         }
     }
 
-    //  READ live data from Firestore TODO("read logic")
+    //   TODO("read logic")
     override fun observeNotesFromCloud(): Flow<List<Note>> = callbackFlow {
         val listener = notesCollection.addSnapshotListener { snapshot, _ ->
             if (snapshot != null) {
                 val notes = snapshot.documents.map { doc ->
                     Note(
-                        id = doc.id,
-                        title = doc.getString("title") ?: "",
+                        user_id = doc.id,
+                        id = doc.getString("id") ?: "",
                         subject = doc.getString("subject") ?: "",
                         downloadUrl = doc.getString("downloadUrl") ?: "",
                         uploadedAt = doc.getLong("uploadedAt") ?: 0L

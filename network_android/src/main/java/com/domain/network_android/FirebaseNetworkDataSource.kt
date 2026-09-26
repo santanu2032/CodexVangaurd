@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class FirebaseNetworkDataSource : RemoteNotesDataSource {
 
     override suspend fun uploadPdfAndSaveToCloud(
-        title: String,
+        id: String,
         subject: String,
         fileName: String,
         pdfBytes: ByteArray

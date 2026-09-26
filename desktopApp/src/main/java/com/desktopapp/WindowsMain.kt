@@ -23,7 +23,11 @@ import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
 import com.domain.MainScreenLogic.StatusBarLogic
-import com.domain.RequestRepository
+import com.domain.processRequest_
+import com.domain.firebase_db.Note
+import com.domain.firebase_db.RemoteNotesDataSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
 
 fun main() = application {//composition root
@@ -46,7 +50,17 @@ fun main() = application {//composition root
             val link = remember { Worker() }
             val localManager = remember { LocalManager() }
             val network =remember { Local_Manager_NetworkUIRepository() }
-            val request= remember { RequestRepository() }
+            val dataSource= remember { object : RemoteNotesDataSource{
+                override suspend fun uploadPdfAndSaveToCloud(
+                    id: String,
+                    subject: String,
+                    fileName: String,
+                    pdfBytes: ByteArray
+                ): Result<Unit> = Result.success(Unit)
+
+                override fun observeNotesFromCloud(): Flow<List<Note>> = emptyFlow()
+            } }
+            val request= remember { processRequest_(dataSource) }
             val networkManager=remember { NetworkManager(request) }
             val statusBarLogic_= remember{ StatusBarLogic() }
             val hour=statusBarLogic_.timeState()
