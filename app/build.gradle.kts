@@ -75,6 +75,7 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":sharedUI"))
     implementation(project(":Domain"))
+    implementation(project(":LocalDatabase"))
     implementation(project(":network_android"))
     implementation(libs.mlkit.genai.speech)
 }

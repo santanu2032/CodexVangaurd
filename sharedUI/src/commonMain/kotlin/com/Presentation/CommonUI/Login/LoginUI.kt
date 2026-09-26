@@ -1,4 +1,4 @@
-package com.Presentation.CommonUI
+package com.Presentation.CommonUI.Login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,17 +29,20 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.domain.LoginLogic.LoginScreenLogicContract
 import org.jetbrains.compose.resources.painterResource
 import testui.sharedui.generated.resources.Res
 import testui.sharedui.generated.resources.login_bg
 
 
 @Composable
-fun LoginUi(){
+fun LoginUi(obj: LoginScreenLogicContract){
 
-    var text by remember { mutableStateOf("") }
+    var name_ by remember { mutableStateOf("") }
+    var roll by remember { mutableStateOf(0) }
     Box(modifier = Modifier
         .fillMaxSize()
         .background( Color.Black)) {
@@ -70,16 +74,18 @@ fun LoginUi(){
                 .background(color = Color(0xFF2C2C2C), shape = CircleShape)
                 .padding(horizontal = 8.dp, vertical = 6.dp)) {
                 BasicTextField(
-                    value = text,
-                    onValueChange = { text = it },
+                    value = name_,
+                    onValueChange = { name_ = it },
                     textStyle = TextStyle(color = Color.White, fontSize = 16.sp),
                     cursorBrush = SolidColor(Color.White),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                     modifier = Modifier
                         .weight(1f)
                         .padding(horizontal = 16.dp),
                     decorationBox = { innerTextField ->
                         Box(contentAlignment = Alignment.CenterStart) {
-                            if (text.isEmpty()) {
+                            if (name_.isEmpty()) {
                                 Text("Enter user id")
                             }
                             innerTextField()
@@ -96,16 +102,18 @@ fun LoginUi(){
                 .background(color = Color(0xFF2C2C2C), shape = CircleShape)
                 .padding(horizontal = 8.dp, vertical = 6.dp)) {
                 BasicTextField(
-                    value = text,
-                    onValueChange = { text = it },
+                    value = name_,
+                    onValueChange = { name_ = it },
                     textStyle = TextStyle(color = Color.White, fontSize = 16.sp),
                     cursorBrush = SolidColor(Color.White),
+                    singleLine = true,
+                    keyboardOptions= KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                     modifier = Modifier
                         .weight(1f)
                         .padding(horizontal = 16.dp),
                     decorationBox = { innerTextField ->
                         Box(contentAlignment = Alignment.CenterStart) {
-                            if (text.isEmpty()) {
+                            if (roll==0) {
                                 Text("Enter Password")
                             }
                             innerTextField()
@@ -122,6 +130,7 @@ fun LoginUi(){
                 contentAlignment = Alignment.Center
             ){
                 Text("Login")
+                obj.RequestAccess(r = roll, name = name_)
             }
         }
 

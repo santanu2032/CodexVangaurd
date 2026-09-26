@@ -20,9 +20,13 @@ import com.Presentation.CommonUI.MainScreen
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
+import com.domain.LoginLogic.preLoard
 import com.domain.MainScreenLogic.StatusBarLogic
 import com.domain.processRequest_
 import com.domain.network_android.FirestoreNotesDataSource
+import com.localdatabase.Execute_read_android
+import com.localdatabase.Execute_search_android
+import com.localdatabase.preLoadC_android
 import kotlinx.coroutines.delay
 
 
@@ -50,6 +54,14 @@ class MainActivity : ComponentActivity() {
 
                         changeGreeting(statusBarLogic_.timeState())
                     }
+                }
+                val isVerified: Boolean = remember {
+                    val readImpl = preLoadC_android()
+                    val searchImpl =
+                        Execute_search_android()
+
+                    val preLoadObj = preLoard(readImpl, searchImpl)
+                    preLoadObj.preLoad_()
                 }
 
                 LaunchedEffect(Unit) {

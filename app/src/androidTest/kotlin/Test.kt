@@ -113,11 +113,11 @@ fun LoginUi(){
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold)
             Row(modifier = Modifier
-                    .fillMaxWidth(0.78f)
+                .fillMaxWidth(0.78f)
                 .align(BiasAlignment(horizontalBias = 0f, verticalBias = -0.7f))
-                    .shadow(elevation = 4.dp, shape = CircleShape)
-                    .background(color = Color(0xFF2C2C2C), shape = CircleShape)
-                    .padding(horizontal = 8.dp, vertical = 6.dp)) {
+                .shadow(elevation = 4.dp, shape = CircleShape)
+                .background(color = Color(0xFF2C2C2C), shape = CircleShape)
+                .padding(horizontal = 8.dp, vertical = 6.dp)) {
                 BasicTextField(
                     value = text,
                     onValueChange = { text = it },

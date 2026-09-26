@@ -32,6 +32,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                implementation(libs.sqlite.jdbc.v34600)
+                implementation(project(":Domain"))
 
             }
         }
