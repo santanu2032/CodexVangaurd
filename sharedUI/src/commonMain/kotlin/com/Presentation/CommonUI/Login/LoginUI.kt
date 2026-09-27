@@ -2,6 +2,7 @@ package com.Presentation.CommonUI.Login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -42,7 +43,8 @@ import testui.sharedui.generated.resources.login_bg
 fun LoginUi(obj: LoginScreenLogicContract){
 
     var name_ by remember { mutableStateOf("") }
-    var roll by remember { mutableStateOf(0) }
+    var roll by remember { mutableStateOf("") }
+    var c by remember { mutableStateOf(Color.DarkGray) }
     Box(modifier = Modifier
         .fillMaxSize()
         .background( Color.Black)) {
@@ -102,8 +104,8 @@ fun LoginUi(obj: LoginScreenLogicContract){
                 .background(color = Color(0xFF2C2C2C), shape = CircleShape)
                 .padding(horizontal = 8.dp, vertical = 6.dp)) {
                 BasicTextField(
-                    value = name_,
-                    onValueChange = { name_ = it },
+                    value = roll,
+                    onValueChange = { roll = it },
                     textStyle = TextStyle(color = Color.White, fontSize = 16.sp),
                     cursorBrush = SolidColor(Color.White),
                     singleLine = true,
@@ -113,7 +115,7 @@ fun LoginUi(obj: LoginScreenLogicContract){
                         .padding(horizontal = 16.dp),
                     decorationBox = { innerTextField ->
                         Box(contentAlignment = Alignment.CenterStart) {
-                            if (roll==0) {
+                            if (roll.isEmpty()) {
                                 Text("Enter Password")
                             }
                             innerTextField()
@@ -125,12 +127,19 @@ fun LoginUi(obj: LoginScreenLogicContract){
             Box(modifier = Modifier
                 .fillMaxHeight(0.1f)
                 .fillMaxWidth(0.2f)
-                .background(Color.Gray, shape = RoundedCornerShape(16.dp))
-                .align(BiasAlignment(horizontalBias = 0f, verticalBias = 0f)),
+                .background(c, shape = RoundedCornerShape(16.dp))
+                .align(BiasAlignment(horizontalBias = 0f, verticalBias = 0f))
+                .clickable{
+                    c= Color.Gray
+                    val rn: Int?= roll.toIntOrNull()
+                    val n: String= name_
+                    obj.submitAccessRequest(r = rn, name = n)
+                }
+                ,
                 contentAlignment = Alignment.Center
             ){
                 Text("Login")
-                obj.RequestAccess(r = roll, name = name_)
+
             }
         }
 

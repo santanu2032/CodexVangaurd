@@ -1,6 +1,6 @@
 package com.domain.LoginLogic
 
-class preLoard(private val obj: ReadID, private val obj2: searchContract): showLoginScreen {
+class preLoard(private val obj: ReadID, private val obj2: searchContract): isShowLoginScreenOnStart {
 
 
    override fun preLoad_(): Boolean {

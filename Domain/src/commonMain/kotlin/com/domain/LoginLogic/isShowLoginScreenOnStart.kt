@@ -1,5 +1,5 @@
 package com.domain.LoginLogic
 
-interface showLoginScreen {
+interface isShowLoginScreenOnStart {
     fun preLoad_(): Boolean
 }

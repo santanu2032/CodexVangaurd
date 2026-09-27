@@ -14,3 +14,8 @@
 .cxx
 local.properties
 /LocalDatabase/localdatabase.db
+/app/src/main/assets/credential.db
+/app/src/main/assets/studentRecord.db
+/app/google-services.json
+/credential.db
+/studentRecord.db
