@@ -3,12 +3,13 @@ package com.domain
 import com.domain.firebase_db.RemoteNotesDataSource
 
 class processRequest_(private val dataSource: RemoteNotesDataSource): RequestReprositoryRouter {
-  override  suspend fun processRequest(str: String): String{
+  @Suppress("SuspiciousIndentation")
+  override  suspend fun processRequest(str: String,type: String): String{
 
       val result=dataSource.uploadPdfAndSaveToCloud(
-          id = str,
-          subject = str,
-          fileName = "$str.pdf",
+          id = "Admin",
+          subject = type,
+          fileName = str,
           pdfBytes = ByteArray(0)
       )
         return "\n Access Granted $result"

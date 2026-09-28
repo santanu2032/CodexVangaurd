@@ -14,10 +14,12 @@ import com.Presentation.CommonUI.mainScreenUI.DrawMainScreenBackground
 import com.Presentation.CommonUI.mainScreenUI.localManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
+import com.domain.LoginLogic.isShowLoginScreenOnStart
+import com.domain.firebase_db.RemoteNotesDataSource
 
 
 @Composable
-fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent: NetworkUILinkRepository,networkManager: NetworkManager,state: StatusBarStateHolder){
+fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent: NetworkUILinkRepository,networkManager: NetworkManager,state: StatusBarStateHolder,str: isShowLoginScreenOnStart,obj2: RemoteNotesDataSource){
 
     val currentState_prototypeBox_II by localManager.uiState_2.collectAsState()
     val currentState_prototypeBox_I by localManager.uiState_1.collectAsState()
@@ -31,7 +33,7 @@ fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent:
             Event_2()
         }
         else if(currentState_prototypeBox_I.isClicked_1){
-            Event_1(networkEvent,networkManager)
+            Event_1(networkEvent,networkManager,str,obj2)
         }
         else{
             DrawMainScreenBackground(eventLink,localManager,state)

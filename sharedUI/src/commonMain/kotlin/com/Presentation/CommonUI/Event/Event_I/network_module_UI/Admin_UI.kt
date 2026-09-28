@@ -9,12 +9,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,11 +33,17 @@ import com.domain.NetworkUILinkRepository
 
 
 @Composable
-fun Network_UI(networkEvent: NetworkUILinkRepository,networkManager: NetworkManager){
+fun Admin_UI(networkEvent: NetworkUILinkRepository, networkManager: NetworkManager){
 
     var isClicked by remember{mutableStateOf(false)}
     val boxColor = if (isClicked) Color.Gray else Color.White
     var text by remember { mutableStateOf("") }
+
+
+    var drop: Boolean by remember { mutableStateOf(false) }
+    val item=listOf<String>("urgent","normal")//TODO change to udf here later
+    var selected by remember { mutableStateOf(item[0]) }
+
 
     Box(modifier = Modifier
 
@@ -96,6 +101,34 @@ fun Network_UI(networkEvent: NetworkUILinkRepository,networkManager: NetworkMana
 
             }
         }
+
+
+        Box(modifier = Modifier
+            .fillMaxHeight(0.06f)
+            .fillMaxWidth(0.6f)
+            .align(BiasAlignment(horizontalBias = 0f, verticalBias = 0.3f))
+            .background(color = boxColor)
+            .clickable{drop=true},
+            contentAlignment = Alignment.Center
+        ){
+            DropdownMenu(modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Gray),
+                expanded = drop,
+                onDismissRequest = {drop=false}) {
+
+                item.forEach { item ->
+                    DropdownMenuItem(
+                        text={Text(item)},
+                        onClick = {selected=item
+                            drop=false
+                        }
+                    )
+                }
+            }
+
+        }
+
         Box(modifier = Modifier
             .fillMaxHeight(0.08f)
             .fillMaxWidth(0.3f)
@@ -104,7 +137,7 @@ fun Network_UI(networkEvent: NetworkUILinkRepository,networkManager: NetworkMana
             .clickable{
                 isClicked=true
                 networkEvent.Status_Report(isClicked)
-                networkManager.requestNetworkActivity(text)
+                networkManager.requestNetworkActivity(text,selected)
                 val state = networkManager.sendRequest.value
                 print("Test"+state)
             }

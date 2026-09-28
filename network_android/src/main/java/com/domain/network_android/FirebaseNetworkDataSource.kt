@@ -4,9 +4,9 @@ import com.domain.firebase_db.Note
 import com.domain.firebase_db.RemoteNotesDataSource
 import kotlinx.coroutines.flow.Flow
 
-class FirebaseNetworkDataSource : RemoteNotesDataSource {
+class FirebaseNetworkDataSource  {
 
-    override suspend fun uploadPdfAndSaveToCloud(
+     suspend fun uploadPdfAndSaveToCloud(
         id: String,
         subject: String,
         fileName: String,
@@ -15,7 +15,7 @@ class FirebaseNetworkDataSource : RemoteNotesDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun observeNotesFromCloud(): Flow<List<Note>> {
+   fun observeNotesFromCloud(): Flow<List<Note>> {
         TODO("Not yet implemented")
     }
 }

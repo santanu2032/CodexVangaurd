@@ -51,7 +51,9 @@ class FirestoreNotesDataSource : RemoteNotesDataSource {
                         downloadUrl = doc.getString("downloadUrl") ?: "",
                         uploadedAt = doc.getLong("uploadedAt") ?: 0L
                     )
+
                 }
+                println("observing")
                 trySend(notes)
             }
         }

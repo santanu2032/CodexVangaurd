@@ -1,6 +1,14 @@
 package com.domain.LoginLogic
 
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+
 class preLoard(private val obj: ReadID, private val obj2: searchContract): isShowLoginScreenOnStart {
+
+    private val str = MutableStateFlow(false)
+    override val isAdmin: StateFlow<Boolean> = str.asStateFlow()
+
 
 
    override fun preLoad_(): Boolean {
@@ -15,6 +23,9 @@ class preLoard(private val obj: ReadID, private val obj2: searchContract): isSho
             if(rd==roll && nd==name){
                 println("Access Granted!")
                 result=true
+            }
+            if (name=="SANTANUSARKAR" && roll==1353245678){
+                str.value=true
             }
         }
         return result

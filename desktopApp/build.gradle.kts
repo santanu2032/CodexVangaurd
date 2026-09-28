@@ -59,6 +59,7 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":sharedUI"))
     implementation(project(":Domain"))
+    implementation(project(":LocalDatabase"))
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.swing)
 }

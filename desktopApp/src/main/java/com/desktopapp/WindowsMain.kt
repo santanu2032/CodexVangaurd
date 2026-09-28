@@ -22,10 +22,13 @@ import com.Presentation.CommonUI.StartScreen
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
+import com.domain.LoginLogic.preLoard
 import com.domain.MainScreenLogic.StatusBarLogic
 import com.domain.processRequest_
 import com.domain.firebase_db.Note
 import com.domain.firebase_db.RemoteNotesDataSource
+import com.localdatabase.Execute_search_jvm
+import com.localdatabase.preLoadC_jvm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -70,6 +73,11 @@ fun main() = application {//composition root
                     changeGreeting(statusBarLogic_.timeState())
                 }
             }
+            val preLoadObj = remember {
+                val readImpl = preLoadC_jvm()
+                val searchImpl = Execute_search_jvm()
+                preLoard(obj = readImpl, obj2 = searchImpl)
+            }
             LaunchedEffect(Unit) {
                 statusBar_.changeGreeting(hour)
                 delay(5000)
@@ -77,7 +85,7 @@ fun main() = application {//composition root
             }
 
             if (showMainScreen) {
-                MainScreen(link, localManager,network,networkManager,statusBar_)
+                MainScreen(link, localManager,network,networkManager,statusBar_,preLoadObj,dataSource)
             } else {
                 StartScreen()
             }

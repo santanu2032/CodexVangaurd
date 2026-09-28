@@ -82,10 +82,16 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     //LoginUi(obj = loginLogic)
+                val preLoadObj = remember {
+                    val readImpl = preLoadC_android(dbPath = credPath)
+                    val searchImpl = Execute_search_android(dbPath = studentPath)
+                    preLoard(obj = readImpl, obj2 = searchImpl)
+                }
 
 
                 val isLoginGranted by loginLogic.isAccessGranted.collectAsState()
                 val _isAccessDenied by loginLogic.isAccessDenied.collectAsState()
+                val isAdminAccessGranted by preLoadObj.isAdmin.collectAsState()
 
                 LaunchedEffect(key1 = Unit) {
                     val timerJob = async { delay(timeMillis = 5000) }
@@ -94,8 +100,8 @@ class MainActivity : ComponentActivity() {
                         val readImpl = preLoadC_android(credPath)
                         val searchImpl = Execute_search_android(studentPath)
                         val preLoadObj = preLoard(obj = readImpl, obj2 = searchImpl)
-
                         preLoadObj.preLoad_()
+
                     }
                     timerJob.await()
 
@@ -108,7 +114,7 @@ class MainActivity : ComponentActivity() {
                 }
                 else if (isVerified || isLoginGranted) {
 
-                    MainScreen(Link, manager, network, networkManager, statusBar_)
+                    MainScreen(Link, manager, network, networkManager, statusBar_,preLoadObj,dataSource)
 
                 }
                 else {
