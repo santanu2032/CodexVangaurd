@@ -25,7 +25,8 @@ fun Event_1(network: NetworkUILinkRepository,networkManager: NetworkManager,obj:
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.Black)
-    ) {if (isAdminAccessGranted) {
+    ) {
+        if (isAdminAccessGranted) {//TODO fix admin login with state driven ui patter
         Admin_UI(networkEvent = network, networkManager)
     } else {
         userUI(obj2)

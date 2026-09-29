@@ -4,11 +4,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+data class event1State(
+    val admin: Boolean=false
+)
+
+
 class preLoard(private val obj: ReadID, private val obj2: searchContract): isShowLoginScreenOnStart {
 
     private val str = MutableStateFlow(false)
     override val isAdmin: StateFlow<Boolean> = str.asStateFlow()
-
+    private var name_: String?= ""
 
 
    override fun preLoad_(): Boolean {
@@ -22,12 +27,18 @@ class preLoard(private val obj: ReadID, private val obj2: searchContract): isSho
             val nd: String? = sd?.get(1)?.uppercase()?.replace(" ", "")
             if(rd==roll && nd==name){
                 println("Access Granted!")
+                name_ = name
                 result=true
             }
-            if (name=="SANTANUSARKAR" && roll==1353245678){
+            if (name=="ADMIN" && roll==20041710){
                 str.value=true
             }
         }
         return result
+    }
+
+    fun sendName(): String?{
+        val name: String? =name_
+        return name
     }
 }

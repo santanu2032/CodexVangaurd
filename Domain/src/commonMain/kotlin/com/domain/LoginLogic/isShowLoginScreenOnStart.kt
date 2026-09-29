@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface isShowLoginScreenOnStart {
     fun preLoad_(): Boolean
+
     val isAdmin: StateFlow<Boolean>
 }

@@ -17,13 +17,13 @@ import androidx.compose.ui.graphics.Color
 
 
 import androidx.compose.ui.unit.dp
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.values.ActionCardModel
 import com.Presentation.CommonUI.values.StudyActionCard
 
 
 @Composable
-fun PrototypeBox_I(manager: LocalManager){
+fun PrototypeBox_I(manager: UIStateHolder){
     var isClicked by remember { mutableStateOf(false) }
     val boxColor = if (isClicked) Color.Gray else Color.White
 

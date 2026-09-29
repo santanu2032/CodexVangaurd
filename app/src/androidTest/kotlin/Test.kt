@@ -51,6 +51,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.draw.clip
@@ -64,6 +66,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.domain.NetworkUILinkRepository
 import org.jetbrains.compose.resources.painterResource
 import testui.sharedui.generated.resources.Res
@@ -87,116 +90,86 @@ class ExampleInstrumentedTest {
     }
 }
 @Preview
+
 @Composable
-fun Network_UI(){
+fun StatusBar() {//TODO("pass obj for currentState")
 
-    var isClicked by remember{mutableStateOf(false)}
-    val boxColor = if (isClicked) Color.Gray else Color.White
-    var text by remember { mutableStateOf("") }
-
-    Box(modifier = Modifier
-
-        .fillMaxSize()
-        .background(color = Color.Black)
-
-    ) {
-
-        Box(modifier = Modifier
-            .fillMaxWidth(0.9f)
-            .fillMaxHeight(0.2f)
-            .background(color = Color.Transparent)//TODO("change it to mutable or remote calling")
-            .align(alignment = BiasAlignment(horizontalBias = 0.1f, verticalBias = -0.96f))
-            .padding(all = 20.dp),
-            contentAlignment = Alignment.Center,
+    Box(modifier = Modifier.fillMaxSize()) {
 
 
-            ){
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .shadow(elevation = 4.dp, shape = CircleShape)
-                    .background(color = Color(0xFF2C2C2C), shape = CircleShape)
-                    .padding(horizontal = 8.dp, vertical = 6.dp)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(0.94f)
+                .fillMaxHeight(0.15f)
+                .align(BiasAlignment(horizontalBias = 0f, verticalBias = -0.96f))
+                .padding(horizontal = 16.dp, vertical = 16.dp), // Reduced from 50.dp to prevent layout crush
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxHeight()
             ) {
-
-                // Unstyled text field area
-                BasicTextField(
-                    value = text,
-                    onValueChange = { text = it },
-                    textStyle = TextStyle(color = Color.White, fontSize = 16.sp),
-                    cursorBrush = SolidColor(Color.White),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(horizontal = 16.dp),
-                    decorationBox = { innerTextField ->
-                        Box(contentAlignment = Alignment.CenterStart) {
-                            if (text.isEmpty()) {
-
-                                Text("Enter data")
-                            }
-                            innerTextField()
-                        }
-                    }
-                )
-
-
-                val purpleColor = Color(0xFF6750A4)
-
-
-
-                Spacer(modifier = Modifier.width(6.dp))
-
-
-            }
-        }
-
-        var drop: Boolean by remember { mutableStateOf(false) }
-        val item=listOf<String>("urgent","normal")//TODO change to udf here later
-        var selected by remember { mutableStateOf(item[0]) }
-        Box(modifier = Modifier
-            .fillMaxHeight(0.06f)
-            .fillMaxWidth(0.6f)
-            .align(BiasAlignment(horizontalBias = 0f, verticalBias = 0.3f))
-            .background(color = boxColor)
-            .clickable{drop=true},
-            contentAlignment = Alignment.Center
-        ){
-            DropdownMenu(modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Gray),
-                expanded = drop,
-                onDismissRequest = {drop=false}) {
-
-                item.forEach { item ->
-                    DropdownMenuItem(
-                        text={Text(item)},
-                        onClick = {selected=item
-                            drop=false
-                        }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "LET'S STUDY",
+                        color = Color(0xFF635688),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                        text = "Focus mode",
+                        color = Color(0xFF28565A),
+                        fontSize = 11.sp,
+                        modifier = Modifier
+                            .background(Color(0xFF28565A).copy(alpha = 0.2f), RoundedCornerShape(12.dp))
+                            .padding(horizontal = 10.dp, vertical = 4.dp)
                     )
                 }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(
+                    text = ", Maya",
+                    color = Color.White,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
 
-        }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
 
-        Box(modifier = Modifier
-            .fillMaxHeight(0.08f)
-            .fillMaxWidth(0.3f)
-            .align(alignment = Alignment.Center)
-            .background(color = boxColor)
-            .clickable{
-                isClicked=true
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .background(Color(0xFF262A36), RoundedCornerShape(20.dp))
+                        .padding(horizontal = 12.dp, vertical = 8.dp)
+                ) {
+                    Text("🔥", fontSize = 14.sp)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text("12 day streak", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Medium)
+                }
 
 
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .background(Color(0xFF262A36), CircleShape),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("🔔", fontSize = 14.sp)
+                }
+
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .background(Color(0xFF635688), CircleShape)
+                )
             }
-            ,
-            contentAlignment = Alignment.Center
-
-        ) {
-            Text("Test run")
         }
-
-
     }
 }

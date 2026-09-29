@@ -20,7 +20,7 @@ import com.Presentation.CommonUI.Login.AccessDeniedUI
 import com.Presentation.CommonUI.Login.LoginUi
 import com.Presentation.CommonUI.StartScreen
 import com.Presentation.CommonUI.MainScreen
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
 import com.domain.LoginLogic.LoginScreenLogic
@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxSize(),
                 color = Color.Black
             ) {
-                val manager = remember { LocalManager() }
+                val manager = remember { UIStateHolder() }
                 var showMainScreen by remember { mutableStateOf(false) }
                 val Link = remember { Worker() }
                 val network =remember { Local_Manager_NetworkUIRepository() }
@@ -101,10 +101,12 @@ class MainActivity : ComponentActivity() {
                         val searchImpl = Execute_search_android(studentPath)
                         val preLoadObj = preLoard(obj = readImpl, obj2 = searchImpl)
                         preLoadObj.preLoad_()
-
                     }
+
                     timerJob.await()
 
+                    val name_ = preLoadObj.sendName()
+                    manager.setName(name_)
                     isVerified = verifiedResult
                     showMainScreen = true
                 }

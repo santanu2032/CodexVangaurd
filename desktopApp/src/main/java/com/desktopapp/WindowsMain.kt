@@ -19,7 +19,7 @@ import com.Presentation.CommonUI.Event.Event_I.network_module_UI.Local_Manager_N
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
 import com.Presentation.CommonUI.MainScreen
 import com.Presentation.CommonUI.StartScreen
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
 import com.domain.LoginLogic.preLoard
@@ -51,7 +51,7 @@ fun main() = application {//composition root
         ) {
             var showMainScreen by remember { mutableStateOf(false) }
             val link = remember { Worker() }
-            val localManager = remember { LocalManager() }
+            val UIStateHolder = remember { UIStateHolder() }
             val network =remember { Local_Manager_NetworkUIRepository() }
             val dataSource= remember { object : RemoteNotesDataSource{
                 override suspend fun uploadPdfAndSaveToCloud(
@@ -85,7 +85,7 @@ fun main() = application {//composition root
             }
 
             if (showMainScreen) {
-                MainScreen(link, localManager,network,networkManager,statusBar_,preLoadObj,dataSource)
+                MainScreen(link, UIStateHolder,network,networkManager,statusBar_,preLoadObj,dataSource)
             } else {
                 StartScreen()
             }

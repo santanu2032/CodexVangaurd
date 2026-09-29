@@ -16,10 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 
 @Composable
-fun StatusBar(state: StatusBarStateHolder) {//TODO("pass obj for currentState")
+fun StatusBar(state: StatusBarStateHolder, state2: UIStateHolder) {//TODO("pass obj for currentState")
 val currentState by state.modeState.collectAsState()
+    val nameState by state2.userName.collectAsState()
+
     val hour=currentState.currentTimeGreeting
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -29,7 +32,7 @@ val currentState by state.modeState.collectAsState()
                 .fillMaxWidth(0.94f)
                 .fillMaxHeight(0.15f)
                 .align(BiasAlignment(horizontalBias = 0f, verticalBias = -0.96f))
-                 .padding(horizontal = 16.dp, vertical = 16.dp), // Reduced from 50.dp to prevent layout crush
+                 .padding(horizontal = 16.dp, vertical = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -58,7 +61,7 @@ val currentState by state.modeState.collectAsState()
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "$hour, Maya",
+                    text = "$hour, $nameState",
                     color = Color.White,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold

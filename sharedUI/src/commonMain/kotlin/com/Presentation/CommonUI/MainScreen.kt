@@ -12,17 +12,17 @@ import com.domain.NetworkUILinkRepository
 import com.Presentation.CommonUI.Event.Event_II.Event_2
 import com.Presentation.CommonUI.mainScreenUI.DrawMainScreenBackground
 import com.Presentation.CommonUI.mainScreenUI.localManager
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.LocalManager
+import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
 import com.domain.LoginLogic.isShowLoginScreenOnStart
 import com.domain.firebase_db.RemoteNotesDataSource
 
 
 @Composable
-fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent: NetworkUILinkRepository,networkManager: NetworkManager,state: StatusBarStateHolder,str: isShowLoginScreenOnStart,obj2: RemoteNotesDataSource){
+fun MainScreen(eventLink: localManager, UIStateHolder: UIStateHolder, networkEvent: NetworkUILinkRepository, networkManager: NetworkManager, state: StatusBarStateHolder, str: isShowLoginScreenOnStart, obj2: RemoteNotesDataSource){
 
-    val currentState_prototypeBox_II by localManager.uiState_2.collectAsState()
-    val currentState_prototypeBox_I by localManager.uiState_1.collectAsState()
+    val currentState_prototypeBox_II by UIStateHolder.uiState_2.collectAsState()
+    val currentState_prototypeBox_I by UIStateHolder.uiState_1.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()){
 
@@ -36,7 +36,7 @@ fun MainScreen(eventLink: localManager, localManager: LocalManager,networkEvent:
             Event_1(networkEvent,networkManager,str,obj2)
         }
         else{
-            DrawMainScreenBackground(eventLink,localManager,state)
+            DrawMainScreenBackground(eventLink,UIStateHolder,state)
         }
     }
 }
