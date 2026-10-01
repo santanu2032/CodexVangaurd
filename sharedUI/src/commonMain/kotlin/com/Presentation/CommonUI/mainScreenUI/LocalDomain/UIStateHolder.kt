@@ -15,12 +15,12 @@ class UIStateHolder {
 
     private val _uiState_2 = MutableStateFlow(LocalUiState())
     private val _uiState_1=MutableStateFlow(LocalUiState())
-    private val _name=MutableStateFlow(LocalUiState())
+    private val _name=MutableStateFlow(LocalUiState().name)
     private val _mode=MutableStateFlow(LocalUiState())
     val uiState_2: StateFlow<LocalUiState> = _uiState_2.asStateFlow()
 
     val uiState_1: StateFlow<LocalUiState> = _uiState_1.asStateFlow()
-    val userName: StateFlow<LocalUiState> =_name.asStateFlow()
+    val userName: StateFlow<String?> =_name.asStateFlow()
     val appMode: StateFlow<LocalUiState> =_mode.asStateFlow()
 
     fun Clicked_2() {
@@ -33,7 +33,10 @@ class UIStateHolder {
     }
 
     fun setName(str1: String?){
-        _name.value = _name.value.copy(name = str1)
+       val newname: String=str1.toString()
+        _name.value = _name.value?.replace("default",newname)
+        println(newname)
+
     }
 
 }

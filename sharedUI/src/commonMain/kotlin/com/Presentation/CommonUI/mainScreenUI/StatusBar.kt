@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
@@ -22,6 +24,7 @@ import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 fun StatusBar(state: StatusBarStateHolder, state2: UIStateHolder) {//TODO("pass obj for currentState")
 val currentState by state.modeState.collectAsState()
     val nameState by state2.userName.collectAsState()
+    val name_: String = remember { mutableStateOf(nameState).toString() }
 
     val hour=currentState.currentTimeGreeting
     Box(modifier = Modifier.fillMaxSize()) {
@@ -61,7 +64,7 @@ val currentState by state.modeState.collectAsState()
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "$hour, $nameState",
+                    text = "$hour, $name_",
                     color = Color.White,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
