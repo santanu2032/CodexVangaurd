@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
                 val isLoginGranted by loginLogic.isAccessGranted.collectAsState()
                 val _isAccessDenied by loginLogic.isAccessDenied.collectAsState()
                 val isAdminAccessGranted by preLoadObj.isAdmin.collectAsState()
-
+                var name__: String?=remember { mutableStateOf("").toString() }
                 LaunchedEffect(key1 = Unit) {
                     val timerJob = async { delay(timeMillis = 5000) }
 
@@ -104,9 +104,10 @@ class MainActivity : ComponentActivity() {
                     }
 
                     timerJob.await()
-
-                    val name_ = preLoadObj.sendName()
-                    manager.setName(name_)
+                   println("performing the operation now:..........................................")
+                     name__ = preLoadObj.sendName()
+                    println("operation performed: $name__...........................................")
+                    manager.setName(name__)
                     isVerified = verifiedResult
                     showMainScreen = true
                 }
