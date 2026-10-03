@@ -24,7 +24,7 @@ import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
 fun StatusBar(state: StatusBarStateHolder, state2: UIStateHolder) {//TODO("pass obj for currentState")
 val currentState by state.modeState.collectAsState()
     val nameState by state2.userName.collectAsState()
-    val name_: String = remember { mutableStateOf(nameState).toString() }
+    val name_ = remember { mutableStateOf(nameState) }
 
     val hour=currentState.currentTimeGreeting
     Box(modifier = Modifier.fillMaxSize()) {
@@ -64,9 +64,9 @@ val currentState by state.modeState.collectAsState()
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "$hour, $name_",
+                    text = "$hour, ${nameState.toString()}",
                     color = Color.White,
-                    fontSize = 24.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
             }

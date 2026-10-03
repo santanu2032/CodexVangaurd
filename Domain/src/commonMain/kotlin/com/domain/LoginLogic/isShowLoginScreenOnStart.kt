@@ -7,4 +7,5 @@ interface isShowLoginScreenOnStart {
     fun preLoad_(): Boolean
 
     val isAdmin: StateFlow<Boolean>
+    val isUser: StateFlow<Boolean>
 }

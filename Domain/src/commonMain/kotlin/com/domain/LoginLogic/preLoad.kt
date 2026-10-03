@@ -13,7 +13,9 @@ data class event1State(
 class preLoard(private val obj: ReadID, private val obj2: searchContract): isShowLoginScreenOnStart {
 
     private val str = MutableStateFlow(false)
+    private val str2= MutableStateFlow(false)
     override val isAdmin: StateFlow<Boolean> = str.asStateFlow()
+    override val isUser: StateFlow<Boolean> =str2.asStateFlow()
     private var name_: String?= ""
 
 
@@ -29,6 +31,7 @@ class preLoard(private val obj: ReadID, private val obj2: searchContract): isSho
             if(rd==roll && nd==name){
                 println("Access Granted!")
                 name_ = name
+                str2.value=true
                 result=true
             }
             if (name=="ADMIN" && roll==20041710){

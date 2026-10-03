@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                var isVerified by remember { mutableStateOf(false) }
+                var isVerified: Boolean by remember { mutableStateOf(false) }
 
                     val loginLogic: LoginScreenLogicContract = remember {
                         val readImpl = Execute_read_android(credPath)
@@ -105,6 +105,7 @@ class MainActivity : ComponentActivity() {
 
                     timerJob.await()
                    println("performing the operation now:..........................................")
+                    preLoadObj.preLoad_()
                      name__ = preLoadObj.sendName()
                     println("operation performed: $name__...........................................")
                     manager.setName(name__)
