@@ -19,9 +19,9 @@ import com.Presentation.CommonUI.Event.Event_I.network_module_UI.Local_Manager_N
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
 import com.Presentation.CommonUI.MainScreen
 import com.Presentation.CommonUI.StartScreen
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHolder
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.StatusBarStateHolder
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.Worker
 import com.domain.LoginLogic.preLoard
 import com.domain.MainScreenLogic.StatusBarLogic
 import com.domain.processRequest_

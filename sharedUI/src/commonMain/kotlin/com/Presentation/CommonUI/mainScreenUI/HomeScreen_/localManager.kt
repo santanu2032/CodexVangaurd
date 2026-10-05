@@ -1,4 +1,4 @@
-package com.Presentation.CommonUI.mainScreenUI
+package com.Presentation.CommonUI.mainScreenUI.HomeScreen_
 
 interface localManager {
     fun onBoxIClicked(currentStatus: Boolean): Boolean

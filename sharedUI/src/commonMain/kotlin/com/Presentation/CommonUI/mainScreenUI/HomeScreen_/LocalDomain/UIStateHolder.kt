@@ -1,4 +1,4 @@
-package com.Presentation.CommonUI.mainScreenUI.LocalDomain
+package com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

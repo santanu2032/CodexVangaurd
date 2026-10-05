@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.StatusBarStateHolder
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHolder
 
 @Composable
 fun StatusBar(state: StatusBarStateHolder, state2: UIStateHolder) {//TODO("pass obj for currentState")

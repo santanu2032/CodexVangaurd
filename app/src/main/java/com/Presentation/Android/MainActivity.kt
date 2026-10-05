@@ -20,9 +20,10 @@ import com.Presentation.CommonUI.Login.AccessDeniedUI
 import com.Presentation.CommonUI.Login.LoginUi
 import com.Presentation.CommonUI.StartScreen
 import com.Presentation.CommonUI.MainScreen
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.UIStateHolder
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.StatusBarStateHolder
-import com.Presentation.CommonUI.mainScreenUI.LocalDomain.Worker
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHolder
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.StatusBarStateHolder
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.Worker
+import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolder
 import com.domain.LoginLogic.LoginScreenLogic
 import com.domain.LoginLogic.LoginScreenLogicContract
 import com.domain.LoginLogic.preLoard
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
                 val request= remember { processRequest_(dataSource) }
                 val networkManager=remember { NetworkManager(request) }
                 val statusBarLogic_= remember{ StatusBarLogic() }
+                val navObj= remember { NavigationBarUIStateHolder() }
                 val statusBar_ = remember {
                     StatusBarStateHolder().apply {
 
@@ -81,7 +83,7 @@ class MainActivity : ComponentActivity() {
                             obj3 = write
                         )
                     }
-                    //LoginUi(obj = loginLogic)
+
                 val preLoadObj = remember {
                     val readImpl = preLoadC_android(dbPath = credPath)
                     val searchImpl = Execute_search_android(dbPath = studentPath)
@@ -92,7 +94,7 @@ class MainActivity : ComponentActivity() {
                 val isLoginGranted by loginLogic.isAccessGranted.collectAsState()
                 val _isAccessDenied by loginLogic.isAccessDenied.collectAsState()
                 val isAdminAccessGranted by preLoadObj.isAdmin.collectAsState()
-                var name__: String?=remember { mutableStateOf("").toString() }
+                var name__: String?
                 LaunchedEffect(key1 = Unit) {
                     val timerJob = async { delay(timeMillis = 5000) }
 
@@ -118,7 +120,16 @@ class MainActivity : ComponentActivity() {
                 }
                 else if (isVerified || isLoginGranted) {
 
-                    MainScreen(Link, manager, network, networkManager, statusBar_,preLoadObj,dataSource)
+                    MainScreen(Link,
+                        manager,
+                        network,
+                        networkManager,
+                        statusBar_,
+                        preLoadObj,
+                        dataSource,
+                        navObj,
+                        obj = navObj
+                    )
 
                 }
                 else {
@@ -132,7 +143,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            var boxOneStatus by remember { mutableStateOf(true) }
+
         }
     }
 }

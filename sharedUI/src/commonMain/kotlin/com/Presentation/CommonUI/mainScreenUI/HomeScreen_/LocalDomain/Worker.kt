@@ -1,10 +1,9 @@
-package com.Presentation.CommonUI.mainScreenUI.LocalDomain
+package com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.Presentation.CommonUI.mainScreenUI.localManager
-
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.localManager
 
 
 class Worker : localManager {

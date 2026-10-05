@@ -1,4 +1,4 @@
-package com.Presentation.CommonUI.mainScreenUI
+package com.Presentation.CommonUI.mainScreenUI.HomeScreen_
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,13 +16,14 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.values.ActionCardModel
 import com.Presentation.CommonUI.values.StudyActionCard
 
 
 @Composable
-fun PrototypeBox_IV(eventLink: localManager){
-    var isClicked by remember { mutableStateOf(false) }
+fun PrototypeBox_II(manager: UIStateHolder){
+    var isClicked by remember { mutableStateOf(false) }//local state
     val boxColor = if (isClicked) Color.Gray else Color.White
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -31,11 +32,11 @@ fun PrototypeBox_IV(eventLink: localManager){
             .fillMaxWidth(0.4f)
             .fillMaxHeight(0.2f)
             .background(color = boxColor, shape = RoundedCornerShape(30.dp))
-            .align(BiasAlignment(horizontalBias = 0.8f, verticalBias = 0.35f))
+            .align(BiasAlignment(horizontalBias = 0.8f, verticalBias = -0.35f))
             .clickable {
                 isClicked = !isClicked
                 try {
-                    eventLink.onBoxIVClicked(isClicked)
+                  manager.Clicked_2()//global state
                 }
                 catch (e: Exception) {
                     System.err.println(e)
@@ -43,17 +44,17 @@ fun PrototypeBox_IV(eventLink: localManager){
                 }
             }
         ) {
-
             StudyActionCard(
-                model = ActionCardModel(//TODO replace with variable
+                model = ActionCardModel(
                     title = "Continue learning",
                     description = "Return to Cellular Respiration and pick up at the electron transport chain.",
-                    themeColor = Color(0xFF753E51),
+                    themeColor = Color(0xFF28565A),
                     topLabel = "Biology 201",
                     actionText = "Resume lesson",
                     bottomLeftText = "18 min left",
                     progress = 0.68f
-                ))
+                )
+            )
         }
     }
 }
