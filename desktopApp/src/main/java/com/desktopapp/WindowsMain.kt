@@ -32,7 +32,7 @@ import com.localdatabase.preLoadC_jvm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
-
+/*
 fun main() = application {//composition root
     Window(
         onCloseRequest = ::exitApplication,
@@ -92,3 +92,4 @@ fun main() = application {//composition root
         }
     }
 }
+*/
