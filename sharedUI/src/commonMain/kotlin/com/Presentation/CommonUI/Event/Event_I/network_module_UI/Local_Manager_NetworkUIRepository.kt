@@ -1,6 +1,6 @@
 package com.Presentation.CommonUI.Event.Event_I.network_module_UI
 
-import com.domain.NetworkUILinkRepository
+import com.network.NetworkUILinkRepository
 
 
 

@@ -2,7 +2,7 @@ package com.Presentation.CommonUI.Event.Event_I.network_module_UI
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.domain.processRequest_
+import com.network.processRequest_
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

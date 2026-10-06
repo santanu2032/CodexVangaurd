@@ -1,4 +1,4 @@
-package com.domain.lib
+package com.network.lib
 
 class Test {
 }

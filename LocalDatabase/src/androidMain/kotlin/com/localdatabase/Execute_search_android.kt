@@ -1,7 +1,7 @@
 package com.localdatabase
 
 import android.database.sqlite.SQLiteDatabase
-import com.domain.LoginLogic.searchContract
+import com.network.LoginLogic.searchContract
 
 class Execute_search_android(private val dbPath: String) : searchContract {
     override fun search(roll: Int?): Array<String>? {

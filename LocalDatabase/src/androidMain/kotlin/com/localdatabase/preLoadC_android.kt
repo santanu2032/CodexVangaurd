@@ -1,7 +1,7 @@
 package com.localdatabase
 
 import android.database.sqlite.SQLiteDatabase
-import com.domain.LoginLogic.ReadID
+import com.network.LoginLogic.ReadID
 
 class preLoadC_android(private val dbPath: String) : ReadID {
     override fun ReadId(): Array<String>? {

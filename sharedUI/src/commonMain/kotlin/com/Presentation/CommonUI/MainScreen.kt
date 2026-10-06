@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.Presentation.CommonUI.Event.Event_I.Event_1
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
-import com.domain.NetworkUILinkRepository
+import com.network.NetworkUILinkRepository
 import com.Presentation.CommonUI.Event.Event_II.Event_2
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.HomeScreenUI
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.localManager
@@ -20,8 +20,8 @@ import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBar
 import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolder
 import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolderContract
 import com.Presentation.CommonUI.mainScreenUI.calendar_.CalendarUI
-import com.domain.LoginLogic.isShowLoginScreenOnStart
-import com.domain.firebase_db.RemoteNotesDataSource
+import com.network.LoginLogic.isShowLoginScreenOnStart
+import com.network.firebase_db.RemoteNotesDataSource
 
 
 @Composable

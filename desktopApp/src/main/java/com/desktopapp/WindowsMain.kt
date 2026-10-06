@@ -22,11 +22,11 @@ import com.Presentation.CommonUI.StartScreen
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.Worker
-import com.domain.LoginLogic.preLoard
-import com.domain.MainScreenLogic.StatusBarLogic
-import com.domain.processRequest_
-import com.domain.firebase_db.Note
-import com.domain.firebase_db.RemoteNotesDataSource
+import com.network.LoginLogic.preLoard
+import com.network.MainScreenLogic.StatusBarLogic
+import com.network.processRequest_
+import com.network.firebase_db.Note
+import com.network.firebase_db.RemoteNotesDataSource
 import com.localdatabase.Execute_search_jvm
 import com.localdatabase.preLoadC_jvm
 import kotlinx.coroutines.flow.Flow

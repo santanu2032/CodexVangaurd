@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.domain.firebase_db.RemoteNotesDataSource
+import com.network.firebase_db.RemoteNotesDataSource
 
 
 @Composable

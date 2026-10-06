@@ -1,7 +1,7 @@
 package com.localdatabase
 
 import android.database.sqlite.SQLiteDatabase
-import com.domain.LoginLogic.LoginContract
+import com.network.LoginLogic.LoginContract
 
 class Execute_read_android(private val dbPath: String) : LoginContract {
     override fun execute(): Array<String>? {

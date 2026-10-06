@@ -1,6 +1,6 @@
 package com.localdatabase
 
-import com.domain.LoginLogic.searchContract
+import com.network.LoginLogic.searchContract
 import java.sql.Connection
 import java.sql.DriverManager
 

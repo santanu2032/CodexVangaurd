@@ -33,7 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.domain.LoginLogic.LoginScreenLogicContract
+import com.network.LoginLogic.LoginScreenLogicContract
 import org.jetbrains.compose.resources.painterResource
 import testui.sharedui.generated.resources.Res
 import testui.sharedui.generated.resources.login_bg
