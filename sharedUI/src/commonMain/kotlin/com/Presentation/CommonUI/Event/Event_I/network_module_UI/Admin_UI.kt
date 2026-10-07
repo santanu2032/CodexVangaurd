@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.network.NetworkUILinkRepository
+import com.domain.NetworkUILinkRepository
 
 
 @Composable

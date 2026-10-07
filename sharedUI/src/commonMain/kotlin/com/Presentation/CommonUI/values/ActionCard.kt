@@ -1,6 +1,7 @@
 package com.Presentation.CommonUI.values
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,12 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 
 data class ActionCardModel(
     val title: String,
@@ -42,7 +43,21 @@ data class ActionCardModel(
 fun StudyActionCard(model: ActionCardModel) {
 
     Card(
-        modifier = Modifier.fillMaxSize(), // Now takes the size dictated by PrototypeBox
+        modifier = Modifier
+            .fillMaxSize() // Now takes the size dictated by PrototypeBox
+            // --- ADDED UI SEPARATION LOGIC HERE ---
+            .shadow(
+                elevation = 20.dp,
+                shape = RoundedCornerShape(24.dp),
+                ambientColor = Color.Black,
+                spotColor = Color.Black
+            )
+            .border(
+                width = 1.dp,
+                color = Color.White.copy(alpha = 0.05f), // Subtle edge reflection
+                shape = RoundedCornerShape(24.dp)
+            ),
+        // --------------------------------------
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFF191C24))
     ) {
@@ -72,7 +87,7 @@ fun StudyActionCard(model: ActionCardModel) {
                     Text(
                         text = model.topLabel,
                         color = model.themeColor,
-                        fontSize = 12.sp,
+                        fontSize = 10.sp,
                         fontWeight = FontWeight.SemiBold,
                         modifier = Modifier
                             .background(model.themeColor.copy(alpha = 0.15f), RoundedCornerShape(16.dp))
@@ -99,7 +114,10 @@ fun StudyActionCard(model: ActionCardModel) {
                     Spacer(modifier = Modifier.height(8.dp))
                     LinearProgressIndicator(
                         progress = { model.progress },
-                        modifier = Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(3.dp)),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(6.dp)
+                            .clip(RoundedCornerShape(3.dp)),
                         color = model.themeColor,
                         trackColor = Color(0xFF262A36)
                     )
