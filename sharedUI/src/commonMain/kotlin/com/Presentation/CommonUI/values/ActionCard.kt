@@ -108,8 +108,8 @@ fun StudyActionCard(model: ActionCardModel) {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text("Weekly goal", color = Color(0xFF8B92A5), fontSize = 12.sp)
-                        Text("${(model.progress * 100).toInt()}%", color = model.themeColor, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Text("", color = Color(0xFF8B92A5), fontSize = 12.sp)
+                        Text("\n${(model.progress * 100).toInt()}%", color = model.themeColor, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     LinearProgressIndicator(
