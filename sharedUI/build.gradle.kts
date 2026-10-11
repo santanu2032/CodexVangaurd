@@ -34,6 +34,7 @@ kotlin {
         }
 
         androidMain.dependencies {
+            implementation("androidx.activity:activity-compose:1.8.2")
             // android-specific dependencies
         }
 
@@ -47,7 +48,7 @@ kotlin {
 
 android {
     namespace = "com.sharedUI"
-    compileSdk = 35
+    compileSdk = 37
     defaultConfig {
         minSdk = 24
     }

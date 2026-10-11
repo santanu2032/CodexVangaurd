@@ -12,7 +12,7 @@ kotlin {
     android {
         namespace = "com.data"
         compileSdk {
-            version = release(35)
+            version = release(37)
         }
         minSdk = 24
 

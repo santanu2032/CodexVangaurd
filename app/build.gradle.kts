@@ -26,6 +26,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -75,6 +76,7 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":sharedUI"))
     implementation(project(":Domain"))
+    implementation(project(":Data"))
     implementation(project(":LocalDatabase"))
     implementation(project(":network_android"))
     implementation(libs.mlkit.genai.speech)

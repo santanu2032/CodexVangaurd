@@ -12,9 +12,9 @@ kotlin {
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     android {
-        namespace = "com.network.domain"
+        namespace = "com.domain.android"
         compileSdk {
-            version = release(35)
+            version = release(37)
         }
         minSdk = 26
 

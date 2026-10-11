@@ -8,7 +8,7 @@ kotlin {
     android {
         namespace = "com.localdatabase"
         compileSdk {
-            version = release(35)
+            version = release(37)
         }
         minSdk = 24
 
