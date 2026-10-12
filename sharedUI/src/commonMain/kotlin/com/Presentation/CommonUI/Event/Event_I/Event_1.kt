@@ -9,15 +9,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
-import com.network.NetworkUILinkRepository
+import com.domain.NetworkUILinkRepository
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.Admin_UI
-import com.Presentation.CommonUI.Event.Event_I.network_module_UI.userUI
-import com.network.LoginLogic.isShowLoginScreenOnStart
-import com.network.firebase_db.RemoteNotesDataSource
+import com.Presentation.CommonUI.Event.Event_I.network_module_UI.user.userUI
+import com.domain.LoginLogic.isShowLoginScreenOnStart
+import com.domain.TimeConfiguration
+import com.domain.firebase_db.RemoteNotesDataSource
 
 
 @Composable
-fun Event_1(network: NetworkUILinkRepository,networkManager: NetworkManager,obj: isShowLoginScreenOnStart,obj2: RemoteNotesDataSource){
+fun Event_1(network: NetworkUILinkRepository,networkManager: NetworkManager,obj: isShowLoginScreenOnStart,obj2: RemoteNotesDataSource,obj3: TimeConfiguration){
     val isAdminAccessGranted by obj.isAdmin.collectAsState()
     Box(
         modifier = Modifier
@@ -27,7 +28,7 @@ fun Event_1(network: NetworkUILinkRepository,networkManager: NetworkManager,obj:
         if (isAdminAccessGranted) {//TODO fix admin login with state driven ui patter
         Admin_UI(networkEvent = network, networkManager)
     } else {
-        userUI(obj2)
+        userUI(obj2,obj3)
     }
     }
 }
