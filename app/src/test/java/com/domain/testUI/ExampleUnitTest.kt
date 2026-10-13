@@ -1,4 +1,4 @@
-package com.network.testUI
+package com.domain.testUI
 
 /**
  * Example local unit test, which will execute on the development machine (host).
