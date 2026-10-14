@@ -1,7 +1,8 @@
-package com.network.domain
+package com.domain.network_android
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import org.junit.Test
+
+import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

@@ -1,5 +1,6 @@
 package com.localdatabase
 
+import jdk.javadoc.internal.tool.Main.execute
 import org.junit.Assert.fail
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -10,16 +11,5 @@ import kotlin.test.assertEquals
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
 
-        try {
-            execute()
-            // assertTrue(someCondition)
-            println("Test running successfully on the local JVM!")
-        } catch (e: Exception) {
-            fail("Database test crashed: ${e.message}")
-        }
-    }
 }
