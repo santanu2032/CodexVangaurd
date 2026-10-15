@@ -235,5 +235,4 @@ In the spirit of transparency and modern development practices, Project Codex Va
 
 ### 📸 Development Snapshots
 
-![img.png](img.png)
-![img_1.png](img_1.png)
+
