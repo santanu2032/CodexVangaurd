@@ -1,6 +1,6 @@
-package com.network.network_android
+package com.domain.network_android
 
-import com.network.firebase_db.Note
+import com.domain.firebase_db.Note
 import kotlinx.coroutines.flow.Flow
 
 class FirebaseNetworkDataSource  {

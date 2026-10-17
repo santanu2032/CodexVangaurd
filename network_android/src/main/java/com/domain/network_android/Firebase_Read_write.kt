@@ -1,6 +1,6 @@
-package com.network.network_android
+package com.domain.network_android
 
-import com.network.firebase_db.RemoteNotesDataSource
+import com.domain.firebase_db.RemoteNotesDataSource
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import com.network.firebase_db.Note
+import com.domain.firebase_db.Note
 
 class FirestoreNotesDataSource : RemoteNotesDataSource {
 
@@ -41,17 +41,28 @@ class FirestoreNotesDataSource : RemoteNotesDataSource {
 
     //   TODO("read logic")
     override fun observeNotesFromCloud(): Flow<List<Note>> = callbackFlow {
-        val listener = notesCollection.addSnapshotListener { snapshot, _ ->
+        val listener = notesCollection.addSnapshotListener { snapshot, error ->
+            if (error != null) {
+                println("observeNotesFromCloud error: ${error.message}")
+                return@addSnapshotListener
+            }
+
             if (snapshot != null) {
                 val notes = snapshot.documents.map { doc ->
+                    val uploadedAt: Long = when (val value = doc.get("uploadedAt")) {
+                        is Number -> value.toLong()
+                        is String -> value.toLongOrNull() ?: 0L
+                        is com.google.firebase.Timestamp -> value.toDate().time
+                        else -> 0L
+                    }
+
                     Note(
                         user_id = doc.id,
                         id = doc.getString("id") ?: "",
                         subject = doc.getString("subject") ?: "",
-                        downloadUrl = doc.getString("downloadUrl") ?: "",
-                        uploadedAt = doc.getLong("uploadedAt") ?: 0L
+                        downloadUrl = doc.getString("fileName") ?: "",
+                        uploadedAt = uploadedAt
                     )
-
                 }
                 println("observing")
                 trySend(notes)
