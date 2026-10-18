@@ -26,6 +26,9 @@ kotlin {
         }
     }
 
+    // Add JVM target for Desktop support
+    jvm()
+
     // For iOS targets, this is also where you should
     // configure native binary output. For more information, see:
     // https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#build-xcframeworks
@@ -34,8 +37,6 @@ kotlin {
     // project can be found here:
     // https://developer.android.com/kotlin/multiplatform/migrate
     val xcfName = "DataKit"
-
-
 
     // Source set declarations.
     // Declaring a target automatically creates a source set with the same name. By default, the
@@ -75,6 +76,17 @@ kotlin {
             }
         }
 
-    }
+        // JVM Source Sets
+        jvmMain {
+            dependencies {
+                // Add JVM/Desktop-specific dependencies here
+            }
+        }
 
+        jvmTest {
+            dependencies {
+                // Add JVM-specific test dependencies here
+            }
+        }
+    }
 }
