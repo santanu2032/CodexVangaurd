@@ -1,4 +1,4 @@
-package com.network.LoginLogic
+package com.domain.LoginLogic
 
 import kotlinx.coroutines.flow.StateFlow
 
