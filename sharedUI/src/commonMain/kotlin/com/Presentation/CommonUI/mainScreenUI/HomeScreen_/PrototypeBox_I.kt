@@ -48,13 +48,13 @@ fun PrototypeBox_I(manager: UIStateHolder){
             }
         ) { StudyActionCard(
             model = ActionCardModel(//TODO replace with variable
-                title = "Continue learning",
-                description = "Return to Cellular Respiration and pick up at the electron transport chain.",
+                title = "Notice",
+                description = "CSE-CYS\n\n\n",
                 themeColor = Color(0xFF635688), // Purple theme
-                topLabel = "Biology 201",
-                actionText = "Resume lesson",
-                bottomLeftText = "18 min left",
-                progress = 0.68f
+                topLabel = "\n",
+                actionText = "\n",
+                bottomLeftText = "",
+                progress = 0f
             )
         ) }
     }

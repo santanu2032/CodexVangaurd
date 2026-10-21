@@ -1,7 +1,7 @@
 package com.localdatabase
 
 import android.database.sqlite.SQLiteDatabase
-import com.network.LoginLogic.WriteLogicContract
+import com.domain.LoginLogic.WriteLogicContract
 
 class Write_android(private val dbPath: String) : WriteLogicContract {
     override fun execute(name: String?, roll: Int?) {

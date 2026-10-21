@@ -1,6 +1,6 @@
 package com.localdatabase
 
-import com.network.LoginLogic.ReadID
+import com.domain.LoginLogic.ReadID
 import java.sql.DriverManager
 
 class preLoadC_jvm: ReadID {

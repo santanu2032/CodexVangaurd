@@ -1,6 +1,7 @@
 package com.Presentation.CommonUI.mainScreenUI
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,20 +24,36 @@ import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHol
 
 @Composable
 fun StatusBar(state: StatusBarStateHolder, state2: UIStateHolder) {//TODO("pass obj for currentState")
-val currentState by state.modeState.collectAsState()
+    val currentState by state.modeState.collectAsState()
     val nameState by state2.userName.collectAsState()
     val name_ = remember { mutableStateOf(nameState) }
 
     val hour=currentState.currentTimeGreeting
     Box(modifier = Modifier.fillMaxSize()) {
 
-
         Row(
             modifier = Modifier
                 .fillMaxWidth(0.94f)
-                .fillMaxHeight(0.15f)
+                .fillMaxHeight(0.125f)
                 .align(BiasAlignment(horizontalBias = 0f, verticalBias = -0.96f))
-                 .padding(horizontal = 16.dp, vertical = 16.dp),
+
+                .shadow(
+                    elevation = 20.dp,
+                    shape = RoundedCornerShape(24.dp),
+                    ambientColor = Color.Black,
+                    spotColor = Color.Black
+                )
+                .background(
+                    color = Color(0xFF1A1C23),
+                    shape = RoundedCornerShape(24.dp)
+                )
+                .border(
+                    width = 1.dp,
+                    color = Color.White.copy(alpha = 0.05f),
+                    shape = RoundedCornerShape(24.dp)
+                )
+
+                .padding(horizontal = 16.dp, vertical = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

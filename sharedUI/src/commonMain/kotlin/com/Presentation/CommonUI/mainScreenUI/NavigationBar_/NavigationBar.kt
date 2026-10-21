@@ -1,6 +1,7 @@
 package com.Presentation.CommonUI.mainScreenUI.NavigationBar_
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border // Added for subtle edge reflection
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip // Added to fix the touch ripple shape
+import androidx.compose.ui.draw.shadow // Added for elevation
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -45,7 +48,20 @@ fun NavigationBar(obj: NavigationBarUIStateHolderContract) {
                 .padding(horizontal = 24.dp, vertical = 24.dp)
                 .fillMaxWidth()
                 .height(76.dp)
+
+                .shadow(
+                    elevation = 20.dp,
+                    shape = RoundedCornerShape(24.dp),
+                    ambientColor = Color.Black,
+                    spotColor = Color.Black
+                )
                 .background(color = Color(0xFF191C24), shape = RoundedCornerShape(24.dp))
+                .border(
+                    width = 1.dp,
+                    color = Color.White.copy(alpha = 0.05f),
+                    shape = RoundedCornerShape(24.dp)
+                )
+
                 .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
@@ -56,14 +72,17 @@ fun NavigationBar(obj: NavigationBarUIStateHolderContract) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(n1_.n1, RoundedCornerShape(16.dp))
+
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(n1_.n1)
                     .clickable{
                         obj.setStateToHome()
                     },
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text("⊞", color = Color.White, fontSize = 16.sp)
+
+                Text("⊞", color = color1.c1, fontSize = 16.sp)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text("Dashboard", color = color1.c1, fontWeight = FontWeight.Bold, fontSize = 12.sp)
             }
@@ -73,7 +92,8 @@ fun NavigationBar(obj: NavigationBarUIStateHolderContract) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(n2_.n2, RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(n2_.n2)
                     .clickable{
                         obj.setStateCalender()
                     },
@@ -91,7 +111,8 @@ fun NavigationBar(obj: NavigationBarUIStateHolderContract) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(n3_.n3, RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(n3_.n3)
                     .clickable{
                         obj.setStateLibrary()
                     },

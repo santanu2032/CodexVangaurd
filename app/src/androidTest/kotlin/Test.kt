@@ -2,6 +2,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
 import org.junit.runner.RunWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,8 @@ import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.domain.TimeConfiguration
+import com.domain.firebase_db.RemoteNotesDataSource
 
 
 @RunWith(AndroidJUnit4::class)
@@ -47,85 +50,39 @@ class ExampleInstrumentedTest {
     }
 }
 @Preview
-
 @Composable
-fun StatusBar() {//TODO("pass obj for currentState")
+fun userUI(){
 
-    Box(modifier = Modifier.fillMaxSize()) {
-
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(0.94f)
-                .fillMaxHeight(0.15f)
-                .align(BiasAlignment(horizontalBias = 0f, verticalBias = -0.96f))
-                .padding(horizontal = 16.dp, vertical = 16.dp), // Reduced from 50.dp to prevent layout crush
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "LET'S STUDY",
-                        color = Color(0xFF635688),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text(
-                        text = "Focus mode",
-                        color = Color(0xFF28565A),
-                        fontSize = 11.sp,
-                        modifier = Modifier
-                            .background(Color(0xFF28565A).copy(alpha = 0.2f), RoundedCornerShape(12.dp))
-                            .padding(horizontal = 10.dp, vertical = 4.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = ", Maya",
-                    color = Color.White,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .background(Color(0xFF262A36), RoundedCornerShape(20.dp))
-                        .padding(horizontal = 12.dp, vertical = 8.dp)
-                ) {
-                    Text("🔥", fontSize = 14.sp)
-                    Spacer(modifier = Modifier.width(6.dp))
-                    Text("12 day streak", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Medium)
-                }
+    Box(modifier = Modifier
+        .fillMaxSize()
+    ){
 
 
-                Box(
-                    modifier = Modifier
-                        .size(36.dp)
-                        .background(Color(0xFF262A36), CircleShape),
+        Column(modifier = Modifier){
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.05f)
+                .background(color = Color(0xFF673AB7))
+                .align(Alignment.Start),
+                contentAlignment = Alignment.Center
+            ){
+                Box(modifier = Modifier
+                    .fillMaxWidth(0.1f)
+                    .fillMaxHeight()
+                    .background(color = Color(0xFF673AB7))
+                    .clickable{}
+                    .align(Alignment.TopStart),
                     contentAlignment = Alignment.Center
-                ) {
-                    Text("🔔", fontSize = 14.sp)
+                ){
+                    Text(text = "<", color = Color.White)
                 }
+                Text(text = "NOTICE")
+            }
+            Row(modifier = Modifier){
 
-                Box(
-                    modifier = Modifier
-                        .size(36.dp)
-                        .background(Color(0xFF635688), CircleShape)
-                )
+            }
+            Row(modifier = Modifier){
+
             }
         }
     }

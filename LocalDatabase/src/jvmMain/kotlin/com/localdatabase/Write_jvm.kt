@@ -1,6 +1,6 @@
 package com.localdatabase
 
-import com.network.LoginLogic.WriteLogicContract
+import com.domain.LoginLogic.WriteLogicContract
 import java.sql.Connection
 import java.sql.DriverManager
 

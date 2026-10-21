@@ -25,6 +25,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.Local_Manager_NetworkUIRepository
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
+import com.Presentation.CommonUI.Event.Event_II.UserInput_
+import com.Presentation.CommonUI.Event.Event_II._UserInput
 import com.Presentation.CommonUI.Login.AccessDeniedUI
 import com.Presentation.CommonUI.Login.LoginUi
 import com.Presentation.CommonUI.StartScreen
@@ -33,24 +35,31 @@ import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHol
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.StatusBarStateHolder
 import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.Worker
 import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolder
-import com.network.LoginLogic.LoginScreenLogic
-import com.network.LoginLogic.LoginScreenLogicContract
-import com.network.LoginLogic.preLoard
-import com.network.MainScreenLogic.StatusBarLogic
-import com.network.processRequest_
-import com.network.network_android.FirestoreNotesDataSource
+import com.data.firebasedb.dataOperation.TC
+import com.domain.AI.UserInput.ContextType
+import com.domain.AI.UserInput.EchoSpecialist
+import com.domain.AI.UserInput.IntentManager
+import com.domain.AI.UserInput.KeywordContextClassifier
+import com.domain.LoginLogic.LoginScreenLogic
+import com.domain.LoginLogic.LoginScreenLogicContract
+import com.domain.LoginLogic.preLoard
+import com.domain.MainScreenLogic.StatusBarLogic
+import com.domain.processRequest_
+import com.domain.network_android.FirestoreNotesDataSource
 import com.localdatabase.Execute_read_android
 import com.localdatabase.Execute_search_android
 import com.localdatabase.Write_android
 import com.localdatabase.helper.getWritableDbPath
 import com.localdatabase.preLoadC_android
-import com.network.notification.FcmSubscriptionClient
+import com.domain.notification.FcmSubscriptionClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
+    private val micPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +79,7 @@ class MainActivity : ComponentActivity() {
             getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
         setContent {
+            micPermission.launch(Manifest.permission.RECORD_AUDIO)
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = Color.Black
@@ -106,13 +116,27 @@ class MainActivity : ComponentActivity() {
                 val networkManager = remember { NetworkManager(request) }
                 val statusBarLogic_ = remember { StatusBarLogic() }
                 val navObj = remember { NavigationBarUIStateHolder() }
+                val obj=remember { TC() }
+                val obj3 = remember { _UserInput() }
+
+
+                val intentManager = IntentManager(
+                    classifier = KeywordContextClassifier(),
+                    specialists = listOf(
+                        EchoSpecialist(ContextType.CODING),
+                        EchoSpecialist(ContextType.MATH),
+                        EchoSpecialist(ContextType.GENERAL)
+                    )
+                )
+
+
+
 
                 val statusBar_ = remember {
                     StatusBarStateHolder().apply {
                         changeGreeting(statusBarLogic_.timeState())
                     }
                 }
-
                 var isVerified: Boolean by remember { mutableStateOf(false) }
 
                 val loginLogic: LoginScreenLogicContract = remember {
@@ -171,7 +195,10 @@ class MainActivity : ComponentActivity() {
                         preLoadObj,
                         dataSource,
                         navObj,
-                        obj = navObj
+                        obj = navObj,
+                        obj,
+                        obj4 = obj3,
+                        intentManager=intentManager
                     )
                 }
                 else {

@@ -17,12 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 import androidx.compose.ui.unit.dp
+import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.UIStateHolder
 import com.Presentation.CommonUI.values.ActionCardModel
 import com.Presentation.CommonUI.values.StudyActionCard
 
 
 @Composable
-fun PrototypeBox_III(eventLink: localManager){
+fun PrototypeBox_III(eventLink: localManager,screenState: UIStateHolder){
     var isClicked by remember { mutableStateOf(false) }
     val boxColor = if (isClicked) Color.Gray else Color.White
     Box(modifier = Modifier.fillMaxSize()) {
@@ -34,9 +35,9 @@ fun PrototypeBox_III(eventLink: localManager){
             .background(color = boxColor, shape = RoundedCornerShape(30.dp))
             .align(BiasAlignment(horizontalBias = -0.8f, verticalBias = 0.35f))
             .clickable {
-                isClicked = !isClicked
+
                 try {
-                    eventLink.onBoxIIIClicked(isClicked)
+                  screenState.Clicked_3()
                 }
                 catch (e: Exception) {
                     System.err.println(e)
@@ -46,13 +47,13 @@ fun PrototypeBox_III(eventLink: localManager){
         ) {
             StudyActionCard(
                 model = ActionCardModel(//TODO replace with variable
-                    title = "Continue learning",
-                    description = "Return to Cellular Respiration and pick up at the electron transport chain.",
+                    title = "Interactive",
+                    description = "Web Activity",
                     themeColor = Color(0xFF8B6C34),
-                    topLabel = "Biology 201",
-                    actionText = "Resume lesson",
-                    bottomLeftText = "18 min left",
-                    progress = 0.68f
+                    topLabel = "What's new?",
+                    actionText = "",
+                    bottomLeftText = "",
+                    progress = 0f
                 ))
         }
     }
