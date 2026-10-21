@@ -1,44 +1,50 @@
 package com.Presentation.CommonUI.Event.Event_II
 
-
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.foundation.text.selection.TextSelectionColors
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.Presentation.CommonUI.Event.AppContainer
-import com.Presentation.CommonUI.Event.ExecuteAudioIntent
-import com.Presentation.CommonUI.values.SantanuCC
-
-
+import java.util.UUID
 
 @Composable
 fun Event_2() {
-    /** The Object will come from higher Classes **/
-    ExecuteAudioIntent(
-    manager = AppContainer.eventManager,
-    platformLink = AppContainer.audioPlatformLink
-)/***/
-        Output()
-        InputContainer()
+    var messages by remember {
+        mutableStateOf(
+            listOf(
+                ChatMessage(id = UUID.randomUUID().toString(), text = "System initialized. How can I help?", isUser = false)
+            )
+        )
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Output(
+            chatMessages = messages
+        )
+
+        InputContainer(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .systemBarsPadding(),
+            onMicClick = {
+                messages = messages + ChatMessage(
+                    id = UUID.randomUUID().toString(),
+                    text = "🎤 [Audio input recorded]",
+                    isUser = true
+                )
+            },
+            onSendClick = { userText ->
+                val userMsg = ChatMessage(id = UUID.randomUUID().toString(), text = userText, isUser = true)
+                val systemReply = ChatMessage(id = UUID.randomUUID().toString(), text = "Echo: $userText", isUser = false)
+
+                messages = messages + userMsg + systemReply
+            }
+        )
+    }
 }
