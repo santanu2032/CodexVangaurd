@@ -35,6 +35,7 @@ kotlin {
 
         androidMain.dependencies {
             implementation("androidx.activity:activity-compose:1.8.2")
+            implementation("com.google.mlkit:genai-speech-recognition:1.0.0-alpha1")
             // android-specific dependencies
         }
 
@@ -50,7 +51,7 @@ android {
     namespace = "com.sharedUI"
     compileSdk = 37
     defaultConfig {
-        minSdk = 24
+        minSdk = 31
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
