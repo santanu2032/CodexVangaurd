@@ -17,6 +17,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,16 +31,28 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.domain.AI.UserInput.UserInputContract
 
 @Composable
 fun InputContainer(
     modifier: Modifier = Modifier,
-    onMicClick: () -> Unit = {},
-    onSendClick: (String) -> Unit = {}
+    onSendClick: (String) -> Unit = {},
+    obj3: UserInputContract
 ) {
     var text by remember { mutableStateOf("") }
+    var isListening by remember { mutableStateOf(false) }
+
+    val voiceRecognizer = rememberVoiceRecognizer()
+
+    DisposableEffect(Unit) {
+        onDispose {
+            voiceRecognizer.destroy()
+        }
+    }
+
     val isSendEnabled = text.isNotBlank()
     val purpleColor = Color(0xFF6750A4)
+    val micActiveColor = Color(0xFFE91E63)
     val disabledColor = Color(0xFF3A3A3C)
 
     Box(
@@ -67,6 +80,10 @@ fun InputContainer(
                 keyboardActions = KeyboardActions(
                     onSend = {
                         if (isSendEnabled) {
+                            if (isListening) {
+                                voiceRecognizer.stopListening()
+                                isListening = false
+                            }
                             onSendClick(text.trim())
                             text = ""
                         }
@@ -82,8 +99,8 @@ fun InputContainer(
                     ) {
                         if (text.isEmpty()) {
                             Text(
-                                text = "Type a command...",
-                                color = Color(0xFF8E8E93),
+                                text = if (isListening) "Listening..." else "Type a command...",
+                                color = if (isListening) micActiveColor else Color(0xFF8E8E93),
                                 fontSize = 16.sp
                             )
                         }
@@ -93,9 +110,25 @@ fun InputContainer(
             )
 
             IconButton(
-                onClick = onMicClick,
+                onClick = {
+                    if (isListening) {
+                        voiceRecognizer.stopListening()
+                        isListening = false
+                    } else {
+                        isListening = true
+                        voiceRecognizer.startListening(
+                            onResult = { spokenText ->
+                                text = spokenText
+                            },
+                            onError = { errorMsg ->
+                                isListening = false
+                                println("Speech Error: $errorMsg")
+                            }
+                        )
+                    }
+                },
                 colors = IconButtonDefaults.iconButtonColors(
-                    containerColor = Color(0xFF3A3A3C),
+                    containerColor = if (isListening) micActiveColor else Color(0xFF3A3A3C),
                     contentColor = Color.White
                 ),
                 modifier = Modifier.size(40.dp)
@@ -108,8 +141,14 @@ fun InputContainer(
             IconButton(
                 onClick = {
                     if (isSendEnabled) {
+                        if (isListening) {
+                            voiceRecognizer.stopListening()
+                            isListening = false
+                        }
                         onSendClick(text.trim())
+                        obj3.setData(text)
                         text = ""
+
                     }
                 },
                 enabled = isSendEnabled,
