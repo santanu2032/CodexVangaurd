@@ -25,7 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.Local_Manager_NetworkUIRepository
 import com.Presentation.CommonUI.Event.Event_I.network_module_UI.NetworkManager
-import com.Presentation.CommonUI.Event.Event_II.UserInput_
+import com.Presentation.CommonUI.Event.Event_II.MyApp
 import com.Presentation.CommonUI.Event.Event_II._UserInput
 import com.Presentation.CommonUI.Login.AccessDeniedUI
 import com.Presentation.CommonUI.Login.LoginUi
@@ -37,7 +37,8 @@ import com.Presentation.CommonUI.mainScreenUI.HomeScreen_.LocalDomain.Worker
 import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolder
 import com.data.firebasedb.dataOperation.TC
 import com.domain.AI.UserInput.ContextType
-import com.domain.AI.UserInput.EchoSpecialist
+import com.domain.AI.EchoSpecialist
+import com.domain.AI.GeneralSpecialistAI
 import com.domain.AI.UserInput.IntentManager
 import com.domain.AI.UserInput.KeywordContextClassifier
 import com.domain.LoginLogic.LoginScreenLogic
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         // Ensure the subscription is triggered only once when the app launches
+        val container = (application as MyApp).container
         FcmSubscriptionClient.subscribeToGlobalUpdates()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
@@ -125,7 +127,7 @@ class MainActivity : ComponentActivity() {
                     specialists = listOf(
                         EchoSpecialist(ContextType.CODING),
                         EchoSpecialist(ContextType.MATH),
-                        EchoSpecialist(ContextType.GENERAL)
+                        GeneralSpecialistAI(ContextType.GENERAL)
                     )
                 )
 
@@ -198,7 +200,8 @@ class MainActivity : ComponentActivity() {
                         obj = navObj,
                         obj,
                         obj4 = obj3,
-                        intentManager=intentManager
+                        intentManager=container.intentManager,
+                        speech = container.speechOutput
                     )
                 }
                 else {
