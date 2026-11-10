@@ -28,6 +28,7 @@ import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBar
 import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolder
 import com.Presentation.CommonUI.mainScreenUI.NavigationBar_.NavigationBarUIStateHolderContract
 import com.Presentation.CommonUI.mainScreenUI.calendar_.CalendarUI
+import com.domain.AI.Output.SpeechOutputController
 import com.domain.AI.UserInput.IntentManager
 import com.domain.AI.UserInput.UserInputContract
 import com.domain.LoginLogic.isShowLoginScreenOnStart
@@ -47,7 +48,8 @@ fun MainScreen(
     obj: NavigationBarUIStateHolderContract,
     obj3: TimeConfiguration,
     obj4: UserInputContract,
-    intentManager: IntentManager
+    intentManager: IntentManager,
+    speech: SpeechOutputController
 ) {
     val mainState by UIStateHolder.state.collectAsState()
     val naveState_ by navState.NavigationBarUIState.collectAsState()
@@ -68,7 +70,7 @@ fun MainScreen(
 
             when (mainState.currentView) {
                 HomeScreenInternalState.EVENT_ONE -> Event_1(networkEvent, networkManager, str, obj2, obj3)
-                HomeScreenInternalState.EVENT_TWO -> Event_2(obj4,intentManager=intentManager)
+                HomeScreenInternalState.EVENT_TWO -> Event_2(obj4,intentManager=intentManager,speech=speech)
                 HomeScreenInternalState.EVENT_THREE -> Event_3(str)
                 HomeScreenInternalState.EVENT_FOUR -> Event_4()
                 HomeScreenInternalState.DEFAULT_BOXES -> {}
